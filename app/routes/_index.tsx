@@ -5,7 +5,7 @@ export const meta: MetaFunction = () => {
 };
 
 export async function loader() {
-  return redirect("/register");
+  return redirect("/auth/register");
 }
 
 export default function Index() {
