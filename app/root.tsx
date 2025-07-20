@@ -1,9 +1,11 @@
+import { captureRemixErrorBoundaryError } from "@sentry/remix";
 import {
   Links,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
+  useRouteError,
 } from "@remix-run/react";
 import type { LinksFunction } from "@remix-run/node";
 
@@ -28,6 +30,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta
+          name="description"
+          content="TugasKu mempermudah pelajar dan mahasiswa dalam mengelola jadwal kursus, tugas, dan pengingat otomatis dengan tampilan ringkas dan fitur notifikasi pintar."
+        />
         <Meta />
         <Links />
       </head>
@@ -39,6 +45,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
     </html>
   );
 }
+
+export const ErrorBoundary = () => {
+  const error = useRouteError();
+  captureRemixErrorBoundaryError(error);
+  return <div>Something went wrong</div>;
+};
 
 export default function App() {
   return <Outlet />;
