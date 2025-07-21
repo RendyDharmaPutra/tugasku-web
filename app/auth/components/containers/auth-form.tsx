@@ -9,7 +9,7 @@ type AuthFormProps = {
 export const AuthForm = ({ label, children }: AuthFormProps) => {
   return (
     <Form
-      action="post"
+      method="POST"
       className="px-6 py-8 flex flex-col justify-center gap-6 w-full h-fit rounded-xl border border-border dark:border-border-dark"
     >
       {children}
