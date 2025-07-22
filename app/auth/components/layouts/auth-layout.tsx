@@ -1,5 +1,4 @@
-import { AuthFooter } from "../containers/auth-footer";
-import { AuthHeader } from "../containers/auth-header";
+import { AuthFooter, AuthHeader } from "../containers";
 
 export const AuthLayout = ({ children }: { children: React.ReactNode }) => {
   return (

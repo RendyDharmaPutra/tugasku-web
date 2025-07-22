@@ -1,17 +1,12 @@
 import { Mail } from "lucide-react";
-import { AuthForm } from "../containers/auth-form";
-import { TextInput } from "~/components/forms/text-input";
-import { PasswordInput } from "~/components/forms/password-input";
-import { useActionData } from "@remix-run/react";
-import { RegisterActionResult } from "~/auth/types/register-action-result";
-import { RegisterFieldErrors } from "~/auth/schemas/register-schema";
-import { extractFieldErrors } from "~/libs/validation";
+import { PasswordInput, TextInput } from "~/components/forms";
+import { useFieldErrors } from "~/hooks";
+import { AuthForm } from "../containers";
+import { RegisterFieldErrors } from "~/auth/schemas";
 
 export const RegisterForm = () => {
-  const actionData = useActionData<RegisterActionResult>();
-
   const { email, password, confirmPassword } =
-    extractFieldErrors<RegisterFieldErrors>(actionData ?? { success: true });
+    useFieldErrors<RegisterFieldErrors>();
 
   return (
     <AuthForm label="Daftar">

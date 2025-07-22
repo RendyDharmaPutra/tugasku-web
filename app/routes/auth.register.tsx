@@ -1,9 +1,10 @@
 import { ActionFunctionArgs, MetaFunction } from "@remix-run/node";
-import { RegisterForm } from "~/auth/components/forms/register-form";
+import { FailureResult, SuccessResult } from "~/utils/action-result";
+import { validateForm } from "~/utils/validation";
+import { supabase } from "~/libs/supabase";
 import { AuthLayout } from "~/auth/components/layouts/auth-layout";
-import { RegisterSchema } from "~/auth/schemas/register-schema";
-import { FailureResult, SuccessResult } from "~/libs/action-result";
-import { validateForm } from "~/libs/validation";
+import { RegisterForm } from "~/auth/components/forms";
+import { RegisterSchema } from "~/auth/schemas";
 
 export const meta: MetaFunction = () => {
   return [{ title: "TugasKu - Register" }];
@@ -28,6 +29,14 @@ export async function action({ request }: ActionFunctionArgs) {
       "Data yang diberikan belum valid",
       validationResult.errors
     );
+
+  const { data, error } = await supabase.auth.signUp({
+    email: validationResult.data.email,
+    password: validationResult.data.password,
+  });
+
+  console.log(data);
+  console.log(error);
 
   return SuccessResult("Berhasil mendaftarkan pengguna", null);
 }

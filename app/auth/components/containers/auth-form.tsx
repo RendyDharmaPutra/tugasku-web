@@ -1,5 +1,5 @@
 import { Form } from "@remix-run/react";
-import { SubmitBtn } from "~/components/forms/submit-btn";
+import { SubmitBtn } from "~/components/forms";
 
 type AuthFormProps = {
   label: "Daftar" | "Login";
