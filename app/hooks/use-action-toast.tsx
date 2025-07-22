@@ -24,7 +24,7 @@ export const useActionToast = (title: string) => {
       toast.custom((t) => (
         <CustomToast
           t={t}
-          title={`Terjadi kesalahan saat ${title}`}
+          title={`Gagal ${title}`}
           description={actionData.message}
           type="error"
         />

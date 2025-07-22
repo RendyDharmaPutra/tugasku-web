@@ -1,11 +1,11 @@
 import { ActionFunctionArgs, MetaFunction } from "@remix-run/node";
-import { FailureResult, SuccessResult } from "~/utils/action-result";
+import { FailureResult } from "~/utils/action-result";
 import { validateForm } from "~/utils/validation";
-import { supabase } from "~/libs/supabase";
 import { AuthLayout } from "~/auth/components/layouts/auth-layout";
 import { RegisterForm } from "~/auth/components/forms";
 import { RegisterSchema } from "~/auth/schemas";
-import { useActionToast } from "~/hooks/use-action-toast";
+import { useActionToast } from "~/hooks";
+import { registerUser } from "~/auth/services";
 
 export const meta: MetaFunction = () => {
   return [{ title: "TugasKu - Register" }];
@@ -33,16 +33,5 @@ export async function action({ request }: ActionFunctionArgs) {
       validationResult.errors
     );
 
-  const { data, error } = await supabase.auth.signUp({
-    email: validationResult.data.email,
-    password: validationResult.data.password,
-  });
-
-  console.log(data);
-  console.log(error);
-
-  return SuccessResult(
-    "Silakan periksa email Anda untuk memverifikasi akun.",
-    null
-  );
+  return registerUser(validationResult.data);
 }
