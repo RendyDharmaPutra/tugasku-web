@@ -5,12 +5,15 @@ import { supabase } from "~/libs/supabase";
 import { AuthLayout } from "~/auth/components/layouts/auth-layout";
 import { RegisterForm } from "~/auth/components/forms";
 import { RegisterSchema } from "~/auth/schemas";
+import { useActionToast } from "~/hooks/use-action-toast";
 
 export const meta: MetaFunction = () => {
   return [{ title: "TugasKu - Register" }];
 };
 
 export default function RegisterPage() {
+  useActionToast("mendaftarkan pengguna");
+
   return (
     <AuthLayout>
       <RegisterForm />
@@ -38,5 +41,8 @@ export async function action({ request }: ActionFunctionArgs) {
   console.log(data);
   console.log(error);
 
-  return SuccessResult("Berhasil mendaftarkan pengguna", null);
+  return SuccessResult(
+    "Silakan periksa email Anda untuk memverifikasi akun.",
+    null
+  );
 }
