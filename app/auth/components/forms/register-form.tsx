@@ -1,8 +1,8 @@
 import { Mail } from "lucide-react";
 import { PasswordInput, TextInput } from "~/components/forms";
 import { useFieldErrors } from "~/hooks";
-import { AuthForm } from "../containers";
 import { RegisterFieldErrors } from "~/auth/schemas";
+import { AuthForm } from "./auth-form";
 
 export const RegisterForm = () => {
   const { email, password, confirmPassword } =
