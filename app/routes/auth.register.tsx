@@ -1,4 +1,4 @@
-import { ActionFunctionArgs, MetaFunction } from "@remix-run/node";
+import { ActionFunctionArgs, json, MetaFunction } from "@remix-run/node";
 import { FailureResult } from "~/utils/action-result";
 import { validateForm } from "~/utils/validation";
 import { RegisterForm } from "~/auth/components/forms";
@@ -31,6 +31,8 @@ export default function RegisterPage() {
 }
 
 export async function action({ request }: ActionFunctionArgs) {
+  const response = new Response();
+
   const validationResult = validateForm(
     await request.formData(),
     RegisterSchema
@@ -42,5 +44,9 @@ export async function action({ request }: ActionFunctionArgs) {
       validationResult.errors
     );
 
-  return registerUser(validationResult.data);
+  const result = await registerUser(request, response, validationResult.data);
+
+  return json(result, {
+    headers: response.headers, // ← hanya di sini kamu perlu headers
+  });
 }

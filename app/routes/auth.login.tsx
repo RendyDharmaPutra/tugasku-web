@@ -1,11 +1,11 @@
-import { ActionFunctionArgs, MetaFunction } from "@remix-run/node";
+import { ActionFunctionArgs, MetaFunction, redirect } from "@remix-run/node";
 import { FailureResult } from "~/utils/action-result";
 import { validateForm } from "~/utils/validation";
 import { LoginForm } from "~/auth/components/forms";
 import { LoginSchema } from "~/auth/schemas";
 import { useActionToast } from "~/hooks";
-import { registerUser } from "~/auth/services";
 import { AuthFooter, AuthHeader, AuthLayout } from "~/auth/components/layouts";
+import { loginUser } from "~/auth/services/login";
 
 export const meta: MetaFunction = () => {
   return [{ title: "TugasKu - Login" }];
@@ -31,6 +31,7 @@ export default function LoginPage() {
 }
 
 export async function action({ request }: ActionFunctionArgs) {
+  const response = new Response();
   const validationResult = validateForm(await request.formData(), LoginSchema);
 
   if (!validationResult.success)
@@ -39,5 +40,11 @@ export async function action({ request }: ActionFunctionArgs) {
       validationResult.errors
     );
 
-  return registerUser(validationResult.data);
+  const result = await loginUser(request, response, validationResult.data);
+
+  if (!result.success) return result;
+
+  return redirect("/dashboard", {
+    headers: response.headers,
+  });
 }

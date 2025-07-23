@@ -8,7 +8,7 @@ export const LoginForm = () => {
   const { email, password } = useFieldErrors<LoginFieldErrors>();
 
   return (
-    <AuthForm label="Daftar">
+    <AuthForm label="Login">
       <TextInput
         label="Alamat Email"
         leading={Mail}

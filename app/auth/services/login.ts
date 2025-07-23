@@ -4,26 +4,24 @@ import { FailureResult, SuccessResult } from "~/utils/action-result";
 import { translateSupabaseAuthError } from "./error-mapper";
 
 /**
- * Mendaftarkan akun user ke sistem Supabase Authentication.
+ * Melakukan login ke sistem Supabase Authentication.
  *
  * Fungsi ini:
- * - Melakukan request ke Supabase untuk membuat akun berdasarkan email & password
+ * - Melakukan request ke Supabase untuk login berdasarkan email & password
  * - Menerjemahkan error dari Supabase ke dalam bentuk user-friendly
- * - Melaporkan error tidak terduga ke Sentry
+ * - Menyisipkan session ke dalam cookie melalui Response
  * - Mengembalikan hasil Success atau Failure sesuai standar `ActionResult`
  *
- * @param userData - Data akun yang berisi `email` dan `password`
- * @returns Promise<ActionResult<null>>
+ * @param request - Objek request dari Remix
+ * @param response - Objek response dari Remix, akan dipakai untuk menyisipkan session
+ * @param credentials - Data login yang berisi email dan password
  *
  * @example
- * const result = await registerUser({ email: "user@email.com", password: "abc123" });
- * if (result.success) {
- *   // Berhasil, bisa redirect atau tampilkan toast
- * } else {
- *   // Gagal, tampilkan pesan kesalahan
- * }
+ * const result = await loginUser(request, response, { email, password });
+ * if (result.success) redirect("/dashboard");
+ * else showError(result.message);
  */
-export async function registerUser(
+export async function loginUser(
   request: Request,
   response: Response,
   credentials: {
@@ -33,19 +31,16 @@ export async function registerUser(
 ) {
   try {
     const supabase = createSupabaseServerClient({ request, response });
-    const { error } = await supabase.auth.signUp(credentials);
+    const { error } = await supabase.auth.signInWithPassword(credentials);
 
     if (error) {
       const message = translateSupabaseAuthError(error.message);
       return FailureResult(message, null);
     }
 
-    return SuccessResult(
-      "Silakan periksa email Anda untuk memverifikasi akun.",
-      null
-    );
+    return SuccessResult("Login berhasil!", null);
   } catch (e) {
-    console.error("Unexpected error saat sign up:", e);
+    console.error("Unexpected error saat login:", e);
     Sentry.captureException(e);
 
     return FailureResult("Terjadi kesalahan yang tidak terduga", null);
