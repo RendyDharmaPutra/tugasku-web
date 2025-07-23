@@ -1,11 +1,11 @@
 import { ActionFunctionArgs, MetaFunction } from "@remix-run/node";
 import { FailureResult } from "~/utils/action-result";
 import { validateForm } from "~/utils/validation";
-import { AuthLayout } from "~/auth/components/layouts/auth-layout";
 import { RegisterForm } from "~/auth/components/forms";
 import { RegisterSchema } from "~/auth/schemas";
 import { useActionToast } from "~/hooks";
 import { registerUser } from "~/auth/services";
+import { AuthFooter, AuthHeader, AuthLayout } from "~/auth/components/layouts";
 
 export const meta: MetaFunction = () => {
   return [{ title: "TugasKu - Register" }];
@@ -16,7 +16,16 @@ export default function RegisterPage() {
 
   return (
     <AuthLayout>
+      <AuthHeader
+        title="Buat akun anda"
+        description="Silahkan bergabung dengan kami hari ini"
+      />
       <RegisterForm />
+      <AuthFooter
+        route="login"
+        label="Sudah punya akun?"
+        highlight="Login di sini"
+      />
     </AuthLayout>
   );
 }

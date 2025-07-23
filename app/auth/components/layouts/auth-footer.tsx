@@ -1,7 +1,7 @@
 import { Link } from "@remix-run/react";
 
 type AuthFooterProps = {
-  route: "/login" | "/register";
+  route: "login" | "register";
   label: string;
   highlight: string;
 };
@@ -12,7 +12,7 @@ export const AuthFooter = ({ route, label, highlight }: AuthFooterProps) => {
       <p className="w-full text-center font-medium text-base text-tertiary-text dark:text-tertiary-text-dark">
         {label}{" "}
         <Link
-          to={route}
+          to={`/auth/${route}`}
           className="text-primary-accent dark:text-primary-accent-dark hover:text-secondary-accent dark:hover:text-secondary-accent-dark animate"
         >
           {highlight}
