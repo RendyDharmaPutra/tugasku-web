@@ -8,7 +8,7 @@ import { registerUser } from "~/auth/services";
 import { AuthFooter, AuthHeader, AuthLayout } from "~/auth/components/layouts";
 
 export const meta: MetaFunction = () => {
-  return [{ title: "TugasKu - Register" }];
+  return [{ title: "TugasKu | Register" }];
 };
 
 export default function RegisterPage() {

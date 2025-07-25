@@ -8,7 +8,7 @@ import { AuthFooter, AuthHeader, AuthLayout } from "~/auth/components/layouts";
 import { loginUser } from "~/auth/services/login";
 
 export const meta: MetaFunction = () => {
-  return [{ title: "TugasKu - Login" }];
+  return [{ title: "TugasKu | Login" }];
 };
 
 export default function LoginPage() {

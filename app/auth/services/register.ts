@@ -33,7 +33,12 @@ export async function registerUser(
 ) {
   try {
     const supabase = createSupabaseServerClient({ request, response });
-    const { error } = await supabase.auth.signUp(credentials);
+    const { error } = await supabase.auth.signUp({
+      ...credentials,
+      options: {
+        emailRedirectTo: "https://tugasku-web.vercel.app/auth/verify",
+      },
+    });
 
     if (error) {
       const message = translateSupabaseAuthError(error.message);
