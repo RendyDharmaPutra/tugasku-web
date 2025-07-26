@@ -31,7 +31,9 @@ export const VerifyEmail = () => {
       <VerifyFooter
         route={success ? "login" : "register"}
         content={
-          success ? "Silahkan login" : "<- Kembali ke halaman registrasi"
+          success
+            ? "Silakan pergi ke halaman login ->"
+            : "<- Kembali ke halaman registrasi"
         }
       />
     </VerifyContainer>

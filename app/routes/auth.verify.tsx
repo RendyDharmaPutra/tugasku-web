@@ -1,28 +1,47 @@
 // routes/auth/verif.tsx
-import type { LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
+import {
+  json,
+  type LoaderFunctionArgs,
+  type MetaFunction,
+} from "@remix-run/node";
 import { AuthLayout } from "~/auth/components/layouts";
 import { VerifyEmail } from "~/auth/components/verify/verify-email";
-import { verify } from "~/auth/services";
-import { FailureResult } from "~/utils/action-result";
-import { getQueryParams } from "~/utils/request";
+import { createSupabaseServerClient } from "~/libs/supabase";
 
 export async function loader({ request }: LoaderFunctionArgs) {
-  const queryParams = getQueryParams(request);
-  const code = queryParams.get("code");
+  const url = new URL(request.url);
+  const code = url.searchParams.get("code");
 
   if (!code) {
-    return FailureResult("Kode verifikasi tidak ditemukan.", null);
+    return json({
+      success: false,
+      message: "Kode verifikasi tidak ditemukan.",
+    });
   }
 
   const response = new Response(); // dibutuhkan oleh supabase client
-  return verify(request, response, code);
+  const supabase = createSupabaseServerClient({ request, response });
+
+  const { error } = await supabase.auth.exchangeCodeForSession(code);
+
+  if (error) {
+    return json(
+      { success: false, message: `Verifikasi gagal: ${error.message}` },
+      { headers: response.headers } // perlu tetap menyertakan headers jika ada perubahan cookie
+    );
+  }
+
+  return json(
+    { success: true, message: "Verifikasi berhasil!" },
+    { headers: response.headers }
+  );
 }
 
 export const meta: MetaFunction = () => {
   return [{ title: "TugasKu | Verifikasi Email" }];
 };
 
-export default function VerifPage() {
+export default function VerifyPage() {
   return (
     <AuthLayout>
       <VerifyEmail />
