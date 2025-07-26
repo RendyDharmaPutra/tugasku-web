@@ -3,21 +3,44 @@
  * Key berupa bagian dari pesan error dari Supabase (lowercase),
  * dan value berupa terjemahan untuk pengguna.
  */
-const SUPABASE_AUTH_ERROR_MAP: { [key: string]: string } = {
+export const SUPABASE_AUTH_ERROR_MAP: { [key: string]: string } = {
+  // Validasi email dan pendaftaran
   "email address.*invalid": "Format email tidak valid.",
   "user already registered": "Email sudah terdaftar.",
   "email already registered": "Email sudah terdaftar.",
-  "password should be at least":
-    "Kata sandi terlalu pendek (minimal 6 karakter).",
+  "signup requires a valid email": "Alamat email tidak valid.",
+  "signup requires a password": "Kata sandi wajib diisi.",
+
+  // Login & kredensial
   "invalid login credentials": "Email atau kata sandi salah.",
   "user not found": "Akun dengan email tersebut tidak ditemukan.",
   "email not confirmed":
     "Email belum dikonfirmasi. Silakan periksa kotak masuk Anda.",
+  "invalid or expired jwt": "Sesi Anda telah berakhir. Silakan login kembali.",
+
+  // Verifikasi dan token
   "token has expired": "Token verifikasi sudah kedaluwarsa. Silakan coba lagi.",
+  "invalid token": "Token verifikasi tidak valid.",
+  "invalid grant": "Kode verifikasi tidak valid atau telah digunakan.",
+  "authorization code has expired": "Kode verifikasi sudah kedaluwarsa.",
+  "authorization code not found":
+    "Kode verifikasi tidak ditemukan atau sudah digunakan.",
+  "invalid authorization code": "Kode verifikasi tidak valid.",
+
+  // Rate limit
   "rate limit": "Terlalu banyak percobaan. Silakan coba beberapa saat lagi.",
   "too many requests":
-    "Terlalu banyak percobaan. Silakan coba beberapa saat lagi.",
-  "invalid or expired jwt": "Sesi Anda telah berakhir. Silakan login kembali.",
+    "Terlalu banyak permintaan. Silakan coba beberapa saat lagi.",
+
+  // Masalah session
+  "session not found": "Sesi tidak ditemukan. Silakan login kembali.",
+  "missing required cookie": "Cookie autentikasi hilang.",
+  "jwt malformed": "Token autentikasi rusak.",
+  "unexpected error":
+    "Terjadi kesalahan yang tidak terduga. Silakan coba lagi.",
+
+  // Fallback
+  default: "Terjadi kesalahan. Silakan coba lagi.",
 };
 
 /**
@@ -33,10 +56,8 @@ export const translateSupabaseAuthError = (message: string): string => {
     SUPABASE_AUTH_ERROR_MAP
   )) {
     const regex = new RegExp(pattern, "i");
-    if (regex.test(msg)) {
-      return translation;
-    }
+    if (regex.test(msg)) return translation;
   }
 
-  return "Terjadi kesalahan saat memproses permintaan Anda.";
+  return SUPABASE_AUTH_ERROR_MAP["default"];
 };
