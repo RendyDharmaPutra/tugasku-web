@@ -2,7 +2,7 @@ import { Form } from "@remix-run/react";
 import { SubmitBtn } from "~/components/forms";
 
 interface AuthFormProps {
-  label: "Daftar" | "Login";
+  label: string;
   children: React.ReactNode;
 }
 
