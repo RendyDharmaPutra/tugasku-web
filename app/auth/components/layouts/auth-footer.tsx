@@ -8,8 +8,8 @@ type AuthFooterProps = {
 
 export const AuthFooter = ({ route, label, highlight }: AuthFooterProps) => {
   return (
-    <div className="-mt-4 p-2.5 flex justify-center items-center w-full h-fit ">
-      <p className="w-full text-center font-medium text-base text-tertiary-text dark:text-tertiary-text-dark">
+    <div className="-mt-5 md:-mt-4 p-2.5 flex justify-center items-center w-full h-fit ">
+      <p className="w-full text-center font-medium text-sm md:text-base text-tertiary-text dark:text-tertiary-text-dark">
         {label}{" "}
         <Link
           to={`/auth/${route}`}

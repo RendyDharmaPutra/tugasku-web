@@ -1,10 +1,9 @@
 import { useNavigation } from "@remix-run/react";
-import { LucideIcon } from "lucide-react";
-import { useRef } from "react";
+// import { LucideIcon } from "lucide-react";
 
 type TextInputProps = React.ComponentProps<"input"> & {
   label: string;
-  leading: LucideIcon;
+  // leading: LucideIcon;
   message?: string;
 };
 
@@ -12,45 +11,30 @@ export const TextInput = ({ label, message, ...props }: TextInputProps) => {
   const { state } = useNavigation();
   const isSubmitting = state === "submitting";
 
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  const handleWrapperClick = () => {
-    inputRef.current?.focus();
-  };
-
   return (
     <div className="flex flex-col gap-2 w-full h-fit">
       <label
         htmlFor={props.id}
-        className="font-medium text-base text-secondary-text dark:text-secondary-text-dark"
+        className="font-medium text-sm md:text-base text-secondary-text dark:text-secondary-text-dark"
       >
         {label}
       </label>
 
       {/* Input Content */}
-      <div
-        onClick={handleWrapperClick}
-        onKeyDown={(e) => {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            handleWrapperClick();
-          }
-        }}
-        role="button"
-        tabIndex={props.tabIndex}
-        className={`p-3.5 flex flex-row items-center gap-2 w-full h-fit rounded-xl border border-border dark:border-border-dark ${
-          isSubmitting &&
-          "bg-secondary-background dark:bg-secondary-background-dark"
-        } hover:bg-secondary-background dark:hover:bg-secondary-background-dark cursor-text animate`}
-      >
-        <props.leading className="w-5 h-5 text-tertiary-text dark:text-tertiary-text-dark" />
+      <div className="relative ">
         <input
-          ref={inputRef}
           aria-disabled={isSubmitting}
           disabled={isSubmitting}
-          className={`w-full font-normal text-base text-primary-text dark:text-primary-text-dark placeholder:text-tertiary-text dark:placeholder:text-tertiary-text-dark outline-none border-none bg-inherit`}
+          className={`
+          p-3 w-full h-fit font-normal text-sm md:text-base text-primary-text dark:text-primary-text-dark placeholder:text-tertiary-text dark:placeholder:text-tertiary-text-dark rounded-xl border border-border dark:border-border-dark ${
+            isSubmitting &&
+            "bg-secondary-background dark:bg-secondary-background-dark"
+          } bg-inherit hover:bg-secondary-background dark:hover:bg-secondary-background-dark animate  
+          outline-none `}
           {...props}
         />
+        {/* Leading Icon */}
+        {/* <props.leading className="absolute top-3 left-3 md:top-[17px] md:left-[17px] w-4 h-4 text-tertiary-text dark:text-tertiary-text-dark" /> */}
       </div>
 
       {/* Message */}
