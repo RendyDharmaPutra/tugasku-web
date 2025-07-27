@@ -12,7 +12,7 @@ export const TextInput = ({ label, message, ...props }: TextInputProps) => {
   const isSubmitting = state === "submitting";
 
   return (
-    <div className="flex flex-col gap-2 w-full h-fit">
+    <div className="flex flex-col gap-1.5 md:gap-2 w-full h-fit">
       <label
         htmlFor={props.id}
         className="font-medium text-sm md:text-base text-secondary-text dark:text-secondary-text-dark"
