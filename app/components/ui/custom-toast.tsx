@@ -3,12 +3,12 @@ import { CircleAlert, CircleCheck, X } from "lucide-react";
 import { toast } from "react-hot-toast";
 import type { Toast } from "react-hot-toast";
 
-type CustomToastProps = {
+interface CustomToastProps {
   t: Toast;
   title: string;
   description?: string;
   type?: "success" | "error" | "default";
-};
+}
 
 export function CustomToast({
   t,

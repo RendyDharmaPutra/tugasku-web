@@ -1,4 +1,3 @@
-import { Mail } from "lucide-react";
 import { PasswordInput, TextInput } from "~/components/forms";
 import { useFieldErrors } from "~/hooks";
 import { LoginFieldErrors } from "~/auth/schemas";
@@ -11,7 +10,6 @@ export const LoginForm = () => {
     <AuthForm label="Login">
       <TextInput
         label="Alamat Email"
-        leading={Mail}
         id="email"
         name="email"
         type="email"

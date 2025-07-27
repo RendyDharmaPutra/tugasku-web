@@ -2,10 +2,8 @@ import { Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
 import { TextInput } from "./text-input";
 
-type PasswordInputProps = Omit<
-  React.ComponentProps<typeof TextInput>,
-  "type" | "leading"
->;
+interface PasswordInputProps
+  extends Omit<React.ComponentProps<typeof TextInput>, "type" | "leading"> {}
 
 export const PasswordInput = ({ ...props }: PasswordInputProps) => {
   const [show, setShow] = useState(false);

@@ -1,11 +1,11 @@
 import { useNavigation } from "@remix-run/react";
 // import { LucideIcon } from "lucide-react";
 
-type TextInputProps = React.ComponentProps<"input"> & {
+interface TextInputProps extends React.ComponentProps<"input"> {
   label: string;
   // leading: LucideIcon;
   message?: string;
-};
+}
 
 export const TextInput = ({ label, message, ...props }: TextInputProps) => {
   const { state } = useNavigation();

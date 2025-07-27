@@ -1,20 +1,20 @@
 import type { ZodFormattedError } from "zod";
 
-export type ActionType = {
+export interface Action {
   success: boolean;
   message: string;
-};
+}
 
-export type ActionSuccess<T> = ActionType & {
+export interface ActionSuccess<T> extends Action {
   success: true;
   data: T;
-};
+}
 
-export type ActionFailure<E = string | ZodFormattedError<unknown>> =
-  ActionType & {
-    success: false;
-    error: E;
-  };
+export interface ActionFailure<E = string | ZodFormattedError<unknown>>
+  extends Action {
+  success: false;
+  error: E;
+}
 
 export type ActionResult<T, E = string | ZodFormattedError<unknown>> =
   | ActionSuccess<T>

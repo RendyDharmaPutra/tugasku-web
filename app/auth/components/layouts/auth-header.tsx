@@ -1,9 +1,9 @@
 import { BookOpen } from "lucide-react";
 
-type AuthHeaderProps = {
+interface AuthHeaderProps {
   title: string;
   description: string;
-};
+}
 
 export const AuthHeader = ({ title, description }: AuthHeaderProps) => {
   return (

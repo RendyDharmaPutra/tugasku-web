@@ -1,9 +1,9 @@
 import { useNavigation } from "@remix-run/react";
 import { LoaderCircle } from "lucide-react";
 
-type SubmitBtnProps = React.ComponentProps<"button"> & {
+interface SubmitBtnProps extends React.ComponentProps<"button"> {
   label: string;
-};
+}
 
 export const SubmitBtn = ({ label, ...props }: SubmitBtnProps) => {
   const { state } = useNavigation();

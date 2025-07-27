@@ -1,10 +1,10 @@
 import { Link } from "@remix-run/react";
 
-type AuthFooterProps = {
+interface AuthFooterProps {
   route: "login" | "register";
   label: string;
   highlight: string;
-};
+}
 
 export const AuthFooter = ({ route, label, highlight }: AuthFooterProps) => {
   return (

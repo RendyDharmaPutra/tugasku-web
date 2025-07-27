@@ -1,10 +1,10 @@
 import { Form } from "@remix-run/react";
 import { SubmitBtn } from "~/components/forms";
 
-type AuthFormProps = {
+interface AuthFormProps {
   label: "Daftar" | "Login";
   children: React.ReactNode;
-};
+}
 
 export const AuthForm = ({ label, children }: AuthFormProps) => {
   return (
