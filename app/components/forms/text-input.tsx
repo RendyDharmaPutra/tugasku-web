@@ -1,3 +1,4 @@
+import { useNavigation } from "@remix-run/react";
 import { LucideIcon } from "lucide-react";
 import { useRef } from "react";
 
@@ -8,6 +9,9 @@ type TextInputProps = React.ComponentProps<"input"> & {
 };
 
 export const TextInput = ({ label, message, ...props }: TextInputProps) => {
+  const { state } = useNavigation();
+  const isSubmitting = state === "submitting";
+
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleWrapperClick = () => {
@@ -34,12 +38,17 @@ export const TextInput = ({ label, message, ...props }: TextInputProps) => {
         }}
         role="button"
         tabIndex={props.tabIndex}
-        className="p-3.5 flex flex-row items-center gap-2 w-full h-fit rounded-xl border border-border dark:border-border-dark hover:bg-secondary-background dark:hover:bg-secondary-background-dark cursor-text animate"
+        className={`p-3.5 flex flex-row items-center gap-2 w-full h-fit rounded-xl border border-border dark:border-border-dark ${
+          isSubmitting &&
+          "bg-secondary-background dark:bg-secondary-background-dark"
+        } hover:bg-secondary-background dark:hover:bg-secondary-background-dark cursor-text animate`}
       >
         <props.leading className="w-5 h-5 text-tertiary-text dark:text-tertiary-text-dark" />
         <input
           ref={inputRef}
-          className="w-full font-normal text-base text-primary-text dark:text-primary-text-dark placeholder:text-tertiary-text dark:placeholder:text-tertiary-text-dark outline-none border-none bg-inherit"
+          aria-disabled={isSubmitting}
+          disabled={isSubmitting}
+          className={`w-full font-normal text-base text-primary-text dark:text-primary-text-dark placeholder:text-tertiary-text dark:placeholder:text-tertiary-text-dark outline-none border-none bg-inherit`}
           {...props}
         />
       </div>
