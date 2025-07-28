@@ -1,9 +1,9 @@
 import { z } from "zod";
 
-export const validateForm = <T extends z.ZodTypeAny>(
+export function validateForm<T extends z.ZodTypeAny>(
   formData: FormData,
   schema: T
-) => {
+) {
   // Parse form data to Object
   const values = Object.fromEntries(formData);
 
@@ -21,4 +21,4 @@ export const validateForm = <T extends z.ZodTypeAny>(
     success: true,
     data: result.data,
   } as const;
-};
+}

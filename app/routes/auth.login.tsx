@@ -5,7 +5,7 @@ import { LoginForm } from "~/auth/components/forms";
 import { LoginSchema } from "~/auth/schemas";
 import { useActionToast } from "~/hooks";
 import { AuthFooter, AuthHeader, AuthLayout } from "~/auth/components/layouts";
-import { loginUser } from "~/auth/services/login";
+import { loginUser } from "~/auth/services";
 
 export const meta: MetaFunction = () => {
   return [{ title: "TugasKu | Login" }];

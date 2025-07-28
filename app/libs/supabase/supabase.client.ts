@@ -1,6 +1,4 @@
 import { createBrowserClient } from "@supabase/auth-helpers-remix";
+import { env } from "~/config/env";
 
-export const supabase = createBrowserClient(
-  process.env.SUPABASE_URL!,
-  process.env.SUPABASE_KEY!
-);
+export const supabase = createBrowserClient(env.SUPABASE_URL, env.SUPABASE_KEY);

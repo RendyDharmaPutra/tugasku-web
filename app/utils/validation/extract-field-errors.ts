@@ -12,10 +12,10 @@
  * const errors = extractFieldErrors<RegisterFieldErrors>(actionData);
  * console.log(errors.email); // e.g., "Email is required"
  */
-export const extractFieldErrors = <T extends Record<string, unknown>>(result: {
+export function extractFieldErrors<T extends Record<string, unknown>>(result: {
   success: boolean;
   error?: T;
-}): Record<keyof T, string | undefined> => {
+}): Record<keyof T, string | undefined> {
   const output: Partial<Record<keyof T, string | undefined>> = {};
 
   // Skip if result is success or contains no error object
@@ -33,4 +33,4 @@ export const extractFieldErrors = <T extends Record<string, unknown>>(result: {
   }
 
   return output as Record<keyof T, string | undefined>;
-};
+}

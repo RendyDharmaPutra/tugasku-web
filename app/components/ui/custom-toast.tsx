@@ -10,12 +10,12 @@ interface CustomToastProps {
   type?: "success" | "error" | "default";
 }
 
-export function CustomToast({
+export const CustomToast = ({
   t,
   title,
   description,
   type = "default",
-}: CustomToastProps) {
+}: CustomToastProps) => {
   const Icon = type === "success" ? CircleCheck : CircleAlert;
 
   return (
@@ -52,4 +52,4 @@ export function CustomToast({
       </button>
     </div>
   );
-}
+};

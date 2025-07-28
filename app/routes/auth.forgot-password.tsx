@@ -1,7 +1,7 @@
 import { ActionFunctionArgs, json, MetaFunction } from "@remix-run/node";
-import { ForgotPasswordForm } from "~/auth/components/forms/forgot-password-form";
+import { ForgotPasswordForm } from "~/auth/components/forms";
 import { AuthFooter, AuthHeader, AuthLayout } from "~/auth/components/layouts";
-import { ForgotPasswordSchema } from "~/auth/schemas/forgot-password-schema";
+import { ForgotPasswordSchema } from "~/auth/schemas";
 import { forgotPasswordUser } from "~/auth/services";
 import { useActionToast } from "~/hooks";
 import { FailureResult } from "~/utils/action-result";

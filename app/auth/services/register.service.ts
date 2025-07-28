@@ -1,7 +1,9 @@
 import * as Sentry from "@sentry/remix";
-import { createSupabaseServerClient } from "~/libs/supabase";
+import {
+  createSupabaseServerClient,
+  translateSupabaseAuthError,
+} from "~/libs/supabase";
 import { FailureResult, SuccessResult } from "~/utils/action-result";
-import { translateSupabaseAuthError } from "./error-mapper";
 
 /**
  * Mendaftarkan akun user ke sistem Supabase Authentication.

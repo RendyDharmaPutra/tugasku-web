@@ -1,7 +1,7 @@
 import { TextInput } from "~/components/forms";
 import { useFieldErrors } from "~/hooks";
 import { AuthForm } from "./auth-form";
-import { ForgotPasswordFieldErrors } from "~/auth/schemas/forgot-password-schema";
+import { ForgotPasswordFieldErrors } from "~/auth/schemas";
 
 export const ForgotPasswordForm = () => {
   const { email } = useFieldErrors<ForgotPasswordFieldErrors>();

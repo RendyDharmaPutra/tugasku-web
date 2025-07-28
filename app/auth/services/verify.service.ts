@@ -1,8 +1,10 @@
-import { createSupabaseServerClient } from "~/libs/supabase";
 import * as Sentry from "@sentry/remix";
-import { FailureResult, SuccessResult } from "~/utils/action-result";
 import { json } from "@remix-run/node";
-import { translateSupabaseAuthError } from "./error-mapper";
+import {
+  createSupabaseServerClient,
+  translateSupabaseAuthError,
+} from "~/libs/supabase";
+import { FailureResult, SuccessResult } from "~/utils/action-result";
 
 export async function verify(
   request: Request,

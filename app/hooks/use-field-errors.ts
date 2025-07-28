@@ -14,7 +14,7 @@ import { extractFieldErrors } from "~/utils/validation";
  * const errors = useFieldErrors<RegisterFieldErrors>();
  * console.log(errors.email); // "Email is required"
  */
-export function useFieldErrors<T extends Record<string, unknown>>() {
+export const useFieldErrors = <T extends Record<string, unknown>>() => {
   const actionData = useActionData<ActionResult<null, T>>();
   return extractFieldErrors<T>(actionData ?? { success: true });
-}
+};

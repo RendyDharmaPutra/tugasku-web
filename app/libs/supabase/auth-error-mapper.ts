@@ -54,7 +54,7 @@ export const SUPABASE_AUTH_ERROR_MAP: { [pattern: string]: string } = {
  * @param message - Pesan error mentah dari Supabase
  * @returns string - Pesan error yang sudah diterjemahkan
  */
-export const translateSupabaseAuthError = (message: string): string => {
+export function translateSupabaseAuthError(message: string): string {
   const msg = message.toLowerCase();
 
   for (const [pattern, translation] of Object.entries(
@@ -65,4 +65,4 @@ export const translateSupabaseAuthError = (message: string): string => {
   }
 
   return SUPABASE_AUTH_ERROR_MAP["default"];
-};
+}

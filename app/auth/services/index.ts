@@ -1,4 +1,4 @@
-export { forgotPasswordUser } from "./forgot-password";
-export { translateSupabaseAuthError } from "./error-mapper";
-export { registerUser } from "./register";
-export { verify } from "./verify";
+export { loginUser } from "./login.service";
+export { forgotPasswordUser } from "./forgot-password.service";
+export { registerUser } from "./register.service";
+export { verify } from "./verify.service";

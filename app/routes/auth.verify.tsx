@@ -5,7 +5,7 @@ import {
   type MetaFunction,
 } from "@remix-run/node";
 import { AuthLayout } from "~/auth/components/layouts";
-import { VerifyEmail } from "~/auth/components/verify/verify-email";
+import { VerifyEmail } from "~/auth/components/verify";
 import { verify } from "~/auth/services";
 import { FailureResult } from "~/utils/action-result";
 import { getQueryParams } from "~/utils/request";
