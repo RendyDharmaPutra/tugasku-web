@@ -14,7 +14,7 @@ export const PasswordInput = ({ ...props }: PasswordInputProps) => {
       <button
         type="button"
         onClick={() => setShow((prev) => !prev)}
-        className="absolute right-3 md:right-4 top-[52px] md:top-[58px] -translate-y-1/2 text-tertiary-text dark:text-tertiary-text-dark"
+        className="absolute right-3 md:right-4 top-[49px] md:top-[57px] -translate-y-1/2 text-tertiary-text dark:text-tertiary-text-dark"
         tabIndex={-1} // agar tidak mengganggu urutan tab jika tidak diinginkan
       >
         {show ? (
