@@ -11,6 +11,7 @@ import type { LinksFunction } from "@remix-run/node";
 
 import "./tailwind.css";
 import { Toaster } from "react-hot-toast";
+import { ThemeProvider } from "./context";
 
 export const links: LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -55,5 +56,9 @@ export const ErrorBoundary = () => {
 };
 
 export default function App() {
-  return <Outlet />;
+  return (
+    <ThemeProvider>
+      <Outlet />
+    </ThemeProvider>
+  );
 }

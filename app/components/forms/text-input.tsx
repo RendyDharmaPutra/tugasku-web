@@ -15,13 +15,13 @@ export const TextInput = ({ label, message, ...props }: TextInputProps) => {
     <div className="flex flex-col gap-1.5 md:gap-2 w-full h-fit">
       <label
         htmlFor={props.id}
-        className="font-medium text-sm md:text-base text-secondary-text dark:text-secondary-text-dark"
+        className="font-medium text-sm md:text-base text-secondary-text dark:text-secondary-text-dark animate"
       >
         {label}
       </label>
 
       {/* Input Content */}
-      <div className="relative ">
+      <div className="relative">
         <input
           aria-disabled={isSubmitting}
           disabled={isSubmitting}
@@ -39,7 +39,7 @@ export const TextInput = ({ label, message, ...props }: TextInputProps) => {
 
       {/* Message */}
       {message && (
-        <p className="-mt-1 font-normal text-sm text-danger dark:text-danger-dark">
+        <p className="-mt-1 font-normal text-sm text-danger dark:text-danger-dark animate">
           {message}
         </p>
       )}

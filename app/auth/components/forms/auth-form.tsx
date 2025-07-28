@@ -10,7 +10,7 @@ export const AuthForm = ({ label, children }: AuthFormProps) => {
   return (
     <Form
       method="POST"
-      className="px-6 py-6 md:py-8 flex flex-col justify-center gap-5 md:gap-6 w-full h-fit rounded-xl border border-border dark:border-border-dark"
+      className="px-6 py-6 md:py-8 flex flex-col justify-center gap-5 md:gap-6 w-full h-fit rounded-xl border border-border dark:border-border-dark animate"
     >
       {children}
       <SubmitBtn label={label} />
