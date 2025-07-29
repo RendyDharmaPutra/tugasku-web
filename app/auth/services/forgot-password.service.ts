@@ -44,7 +44,7 @@ export async function forgotPasswordUser(
     const { error } = await supabase.auth.resetPasswordForEmail(
       credentials.email,
       {
-        redirectTo: "https://tugasku-web.vercel.app/",
+        redirectTo: "https://tugasku-web.vercel.app/reset-password",
       }
     );
 
