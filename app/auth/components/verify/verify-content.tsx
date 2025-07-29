@@ -7,10 +7,10 @@ export const VerifyContent = ({
 }) => {
   return (
     <div className="flex flex-col gap-2">
-      <h2 className="text-center text-3xl font-medium text-primary-text dark:text-primary-text-dark">
+      <h6 className="w-full text-center font-medium text-2xl md:text-3xl text-primary-text dark:text-primary-text-dark animate">
         {title}
-      </h2>
-      <p className="text-center text-sm text-secondary-text dark:text-secondary-text-dark">
+      </h6>
+      <p className="w-full text-center font-normal text-sm text-secondary-text dark:text-secondary-text-dark animate">
         {description}
       </p>
     </div>
