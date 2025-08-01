@@ -2,7 +2,7 @@ import { useNavigation } from "@remix-run/react";
 // import { LucideIcon } from "lucide-react";
 
 interface TextInputProps extends React.ComponentProps<"input"> {
-  label: string;
+  label?: string;
   // leading: LucideIcon;
   message?: string;
 }
@@ -13,12 +13,14 @@ export const TextInput = ({ label, message, ...props }: TextInputProps) => {
 
   return (
     <div className="flex flex-col gap-1.5 md:gap-2 w-full h-fit">
-      <label
-        htmlFor={props.id}
-        className="font-medium text-sm md:text-base text-secondary-text dark:text-secondary-text-dark animate"
-      >
-        {label}
-      </label>
+      {label && (
+        <label
+          htmlFor={props.id}
+          className="font-medium text-sm md:text-base text-secondary-text dark:text-secondary-text-dark animate"
+        >
+          {label}
+        </label>
+      )}
 
       {/* Input Content */}
       <div className="relative">
