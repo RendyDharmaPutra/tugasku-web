@@ -1,4 +1,8 @@
-import { ActionFailure, ActionSuccess } from "~/types/action-result";
+import {
+  ActionFailure,
+  ActionResult,
+  ActionSuccess,
+} from "~/types/action-result";
 
 export const SuccessResult = <T>(
   message: string,
@@ -17,3 +21,15 @@ export const FailureResult = <E>(
   message,
   error,
 });
+
+export function isActionSuccess<T>(
+  action: ActionResult<T, unknown>
+): action is ActionSuccess<T> {
+  return action.success === true;
+}
+
+export function isActionFailure<E>(
+  action: ActionResult<unknown, E>
+): action is ActionFailure<E> {
+  return action.success === false;
+}

@@ -22,18 +22,28 @@ export function useTheme() {
 }
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [darkMode, setDarkMode] = useState(() => {
-    if (typeof window === "undefined") return false;
-    return localStorage.getItem("theme") === "dark" || false;
-  });
+  const [darkMode, setDarkMode] = useState(false);
+  const [hydrated, setHydrated] = useState(false);
 
   useEffect(() => {
-    localStorage.setItem("theme", darkMode ? "dark" : "light");
-  }, [darkMode]);
+    const theme = localStorage.getItem("theme");
+    setDarkMode(theme === "dark");
+    setHydrated(true);
+  }, []);
+
+  useEffect(() => {
+    if (hydrated) {
+      localStorage.setItem("theme", darkMode ? "dark" : "light");
+    }
+  }, [darkMode, hydrated]);
 
   const toggleTheme = () => {
     setDarkMode((prev) => !prev);
   };
+
+  if (!hydrated) {
+    return null; // Hindari mismatch dengan server
+  }
 
   return (
     <ThemeContext.Provider value={{ darkMode, toggleTheme }}>
