@@ -19,14 +19,14 @@ export const CoursesList = (props: CoursesListProps) => {
         <FeedbackState
           title="Belum ada data kursus"
           description="Kamu belum memiliki data kursus sama sekali. Tambahkan kursus pertamamu dan mulai mengelola pembelajaranmu."
-          color="primary-accent"
+          color="primary"
           icon={BookMarked}
         />
       ) : showCourses.length < 1 ? (
         <FeedbackState
           title="Kursus tidak ditemukan"
           description={`Kursus dengan kata kunci "${props.query}" tidak ditemukan. Silakan coba kata kunci lain atau periksa kembali ejaanmu.`}
-          color="primary-accent"
+          color="primary"
           icon={SearchX}
         />
       ) : (
