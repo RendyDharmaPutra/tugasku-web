@@ -17,12 +17,12 @@ export async function loader({ request }: LoaderFunctionArgs) {
   const supabase = createSupabaseServerClient({ request, response });
 
   const user = await requireUserSession(supabase);
-  const coursesData = await readCoursesList(supabase, user);
+  const courses = await readCoursesList(supabase, user);
 
   return json(
     {
       user,
-      coursesData,
+      courses,
     },
     {
       headers: response.headers,

@@ -4,7 +4,10 @@ import { ActionResult } from "~/types/action-result";
 import { FailureResult, SuccessResult } from "~/utils/action-result";
 import { CourseType } from "../types/course-type";
 
-export type ReadCoursesListResponse = ActionResult<CourseType[], null>;
+export type ReadCoursesListResponse = ActionResult<
+  { courses: CourseType[]; total: number },
+  null
+>;
 
 export async function readCoursesList(
   supabase: SupabaseClient,
@@ -21,10 +24,10 @@ export async function readCoursesList(
       return FailureResult(error.message, null);
     }
 
-    return SuccessResult(
-      "Berhasil mendapatkan data kursus",
-      courses as CourseType[]
-    );
+    return SuccessResult("Berhasil mendapatkan data kursus", {
+      courses: courses as CourseType[],
+      total: courses.length,
+    });
   } catch (error) {
     console.error(error);
     Sentry.captureException(error);

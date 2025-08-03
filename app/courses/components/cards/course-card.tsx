@@ -12,7 +12,7 @@ export const CourseCard = ({ course }: CourseCardProps) => {
   return (
     <Link
       to={`/courses/${course.code}`}
-      className="px-6 py-4 flex flex-row items-center gap-4 w-full h-fit border-b border-b-border/20 dark:border-border-dark/20 animate"
+      className="px-6 py-4 flex flex-row items-center gap-4 w-full h-fit border-b border-b-border dark:border-border-dark animate"
     >
       <CardLeading icon={BookMarked} />
       <CardContent

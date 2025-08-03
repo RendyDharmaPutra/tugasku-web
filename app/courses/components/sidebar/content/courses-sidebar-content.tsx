@@ -7,21 +7,21 @@ import { isActionFailure } from "~/utils/action-result";
 import { DataErrorBoundary } from "~/components/boundary";
 
 export const CoursesSidebardContent = () => {
-  const { coursesData } = useLoaderData<{
-    coursesData: ReadCoursesListResponse;
+  const { courses } = useLoaderData<{
+    courses: ReadCoursesListResponse;
   }>();
   const [courseQuery, setCourseQuery] = useState("");
 
   return (
     <section className="flex flex-col items-center w-full h-full ">
       <CoursesSearch query={courseQuery} setQuery={setCourseQuery} />
-      {isActionFailure(coursesData) ? (
+      {isActionFailure(courses) ? (
         <DataErrorBoundary
           title="Gagal mendapatkan data kursus"
-          description={coursesData.message}
+          description={courses.message}
         />
       ) : (
-        <CoursesList courses={coursesData.data} query={courseQuery} />
+        <CoursesList courses={courses.data.courses} query={courseQuery} />
       )}
     </section>
   );
