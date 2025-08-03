@@ -3,8 +3,14 @@ import { ChevronLeft, Plus } from "lucide-react";
 import { ActionBtn } from "~/components/ui";
 import { ReadCoursesListResponse } from "~/courses/services";
 import { isActionSuccess } from "~/utils/action-result";
+import { CoursesSearch } from "./content/courses-search";
 
-export const CoursesSidebarHeader = () => {
+interface CoursesSidebarHeaderProps {
+  query: string;
+  setQuery: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export const CoursesSidebarHeader = (props: CoursesSidebarHeaderProps) => {
   const { courses } = useLoaderData<{
     courses: ReadCoursesListResponse;
   }>();
@@ -38,6 +44,8 @@ export const CoursesSidebarHeader = () => {
         <Plus className="w-5 h-5 " />
         Tambah Kursus Baru
       </ActionBtn>
+
+      <CoursesSearch query={props.query} setQuery={props.setQuery} />
     </section>
   );
 };

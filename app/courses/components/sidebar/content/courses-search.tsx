@@ -7,7 +7,7 @@ interface CoursesSearchProps {
 
 export const CoursesSearch = (props: CoursesSearchProps) => {
   return (
-    <div className="px-4 py-3 flex items-center w-full h-fit ">
+    <div className="flex items-center w-full h-fit ">
       <TextInput
         placeholder="Cari Kursus"
         value={props.query}
