@@ -4,7 +4,7 @@ import { useLoaderData } from "@remix-run/react";
 import { ReadCoursesListResponse } from "~/courses/services/";
 import { CoursesList } from "./courses-list";
 import { isActionFailure } from "~/utils/action-result";
-import { DataErrorBoundary } from "~/components/boundary/data-error-boundary";
+import { DataErrorBoundary } from "~/components/boundary";
 
 export const CoursesSidebardContent = () => {
   const { coursesData } = useLoaderData<{
