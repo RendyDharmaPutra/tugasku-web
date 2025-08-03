@@ -18,7 +18,7 @@ export const FeedbackState = ({
   return (
     <section className="py-12 px-4 flex flex-col items-center justify-center gap-4 text-center">
       <div
-        className={`flex items-center justify-center w-16 h-16 rounded-full  bg-${color}/10 dark:bg-${color}-dark/10 animate`}
+        className={`flex items-center justify-center w-16 h-16 rounded-full bg-${color}/10 dark:bg-${color}-dark/10 animate`}
       >
         <props.icon
           className={`h-8 w-8 text-${color} dark:text-${color}-dark animate`}
