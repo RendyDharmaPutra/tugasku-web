@@ -1,61 +1,19 @@
-import { LoaderFunctionArgs, type MetaFunction } from "@remix-run/node";
-import { json, Outlet, useLocation } from "@remix-run/react";
-import { useEffect, useState } from "react";
-import { useMediaQuery } from "react-responsive";
-import { CoursePlaceholder } from "~/courses/components/content";
-import { CoursesSidebar } from "~/courses/components/sidebar";
-import { readCoursesList } from "~/courses/services";
-import { createSupabaseServerClient } from "~/libs/supabase";
-import { requireUserSession } from "~/utils/auth-session.server";
+import { BookMarked } from "lucide-react";
 
-export const meta: MetaFunction = () => {
-  return [{ title: "TugasKu - Daftar Kursus" }];
-};
-
-export async function loader({ request }: LoaderFunctionArgs) {
-  const response = new Response();
-  const supabase = createSupabaseServerClient({ request, response });
-
-  const user = await requireUserSession(supabase);
-  const courses = await readCoursesList(supabase, user);
-
-  return json(
-    {
-      user,
-      courses,
-    },
-    {
-      headers: response.headers,
-    }
-  );
-}
-
-export default function CoursesPage() {
-  const [hydrated, setHydrated] = useState(false);
-  const isDesktop = useMediaQuery({ minWidth: 1024 });
-  const { pathname } = useLocation();
-
-  useEffect(() => {
-    setHydrated(true);
-  }, []);
-
-  if (!hydrated) {
-    // Hindari rendering di awal sebelum client mounting
-    return null;
-  }
-
+export default function CoursePlaceholder() {
   return (
-    <main className="flex flex-row w-full h-screen ">
-      {isDesktop ? (
-        <>
-          <CoursesSidebar />
-          {pathname === "/courses" ? <CoursePlaceholder /> : <Outlet />}
-        </>
-      ) : pathname === "/courses" ? (
-        <CoursesSidebar />
-      ) : (
-        <Outlet />
-      )}
-    </main>
+    <section className="flex flex-col justify-center items-center gap-4 w-full h-full bg-primary-background dark:bg-primary-background-dark animate">
+      <BookMarked className="w-16 h-16 text-secondary-text dark:text-secondary-text-dark animate" />
+
+      <div className="flex flex-col items-center w-full gap-2 ">
+        <h6 className="font-medium text-xl text-primary-text dark:text-primary-text-dark animate">
+          Belum ada kursus yang dipilih
+        </h6>
+        <p className="w-[70%] xl:w-[35%] text-center font-normal text-base text-secondary-text dark:text-secondary-text-dark animate">
+          Pilih kursus dari daftar untuk melihat detailnya. Anda dapat mencari
+          kursus tertentu menggunakan kolom pencarian.
+        </p>
+      </div>
+    </section>
   );
 }
