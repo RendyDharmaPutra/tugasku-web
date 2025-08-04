@@ -5,3 +5,20 @@
 .animate {
   @apply transition-all duration-300;
 }
+
+.field-default {
+  @apply p-3 w-full font-normal text-sm md:text-base
+    text-primary-text dark:text-primary-text-dark
+    placeholder:text-tertiary-text dark:placeholder:text-tertiary-text-dark
+    rounded-xl border border-border dark:border-border-dark
+    bg-inherit hover:bg-secondary-background dark:hover:bg-secondary-background-dark
+    outline-none animate;
+}
+
+.field-submitting {
+  @apply bg-secondary-background dark:bg-secondary-background-dark;
+}
+
+.primary-btn-color {
+  @apply border border-secondary-accent dark:border-secondary-accent-dark bg-primary-accent dark:bg-primary-accent-dark hover:bg-secondary-accent dark:hover:bg-secondary-accent-dark active:bg-primary-accent dark:active:bg-primary-accent-dark;
+}

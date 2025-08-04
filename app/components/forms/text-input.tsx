@@ -1,15 +1,35 @@
 import { useNavigation } from "@remix-run/react";
-// import { LucideIcon } from "lucide-react";
 
 interface TextInputProps extends React.ComponentProps<"input"> {
+  as?: "input" | "textarea";
   label?: string;
-  // leading: LucideIcon;
   message?: string;
+  rows?: number; // khusus textarea
 }
 
-export const TextInput = ({ label, message, ...props }: TextInputProps) => {
+export const TextInput = ({
+  as = "input",
+  label,
+  message,
+  rows = 4,
+  ...props
+}: TextInputProps) => {
   const { state } = useNavigation();
   const isSubmitting = state === "submitting";
+
+  const commonClassNames = `
+    p-3 w-full font-normal text-sm md:text-base
+    text-primary-text dark:text-primary-text-dark
+    placeholder:text-tertiary-text dark:placeholder:text-tertiary-text-dark
+    rounded-xl border border-border dark:border-border-dark
+    bg-inherit hover:bg-secondary-background dark:hover:bg-secondary-background-dark
+    outline-none animate
+    ${
+      isSubmitting
+        ? "bg-secondary-background dark:bg-secondary-background-dark"
+        : ""
+    }
+  `;
 
   return (
     <div className="flex flex-col gap-1.5 md:gap-2 w-full h-fit">
@@ -22,21 +42,25 @@ export const TextInput = ({ label, message, ...props }: TextInputProps) => {
         </label>
       )}
 
-      {/* Input Content */}
+      {/* Input or Textarea */}
       <div className="relative">
-        <input
-          aria-disabled={isSubmitting}
-          disabled={isSubmitting}
-          className={`
-          p-3 w-full h-fit font-normal text-sm md:text-base text-primary-text dark:text-primary-text-dark placeholder:text-tertiary-text dark:placeholder:text-tertiary-text-dark rounded-xl border border-border dark:border-border-dark ${
-            isSubmitting &&
-            "bg-secondary-background dark:bg-secondary-background-dark"
-          } bg-inherit hover:bg-secondary-background dark:hover:bg-secondary-background-dark animate  
-          outline-none `}
-          {...props}
-        />
-        {/* Leading Icon */}
-        {/* <props.leading className="absolute top-3 left-3 md:top-[17px] md:left-[17px] w-4 h-4 text-tertiary-text dark:text-tertiary-text-dark" /> */}
+        {as === "textarea" ? (
+          <textarea
+            rows={rows}
+            aria-disabled={isSubmitting}
+            disabled={isSubmitting}
+            className={commonClassNames}
+            {...(props as React.ComponentProps<"textarea">)}
+          />
+        ) : (
+          <input
+            type="text"
+            aria-disabled={isSubmitting}
+            disabled={isSubmitting}
+            className={commonClassNames}
+            {...props}
+          />
+        )}
       </div>
 
       {/* Message */}
