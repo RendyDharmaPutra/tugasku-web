@@ -1,19 +1,22 @@
 import { useNavigation } from "@remix-run/react";
 import { FieldContainer, FieldContainerProps } from "./field-container";
 
-interface TextFieldProps
+interface TextAreaFieldProps
   extends Omit<
-      React.ComponentProps<"input">,
-      "className" | "aria-disabled" | "disabled"
+      React.ComponentProps<"textarea">,
+      "className" | "aria-disabled" | "disabled" | "rows"
     >,
-    Omit<FieldContainerProps, "children" | "id"> {}
+    Omit<FieldContainerProps, "children" | "id"> {
+  rows?: number;
+}
 
-export const TextField = ({
+export const TextAreaField = ({
   label,
   message,
   className,
+  rows = 4,
   ...props
-}: TextFieldProps) => {
+}: TextAreaFieldProps) => {
   const { state } = useNavigation();
   const isSubmitting = state === "submitting";
 
@@ -24,7 +27,8 @@ export const TextField = ({
       message={message}
       className={className}
     >
-      <input
+      <textarea
+        rows={rows}
         aria-disabled={isSubmitting}
         disabled={isSubmitting}
         className={`field-default ${isSubmitting && "field-submitting"}`}
