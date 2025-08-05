@@ -1,4 +1,4 @@
-import { TextInput } from "~/components/forms";
+import { TextField } from "~/components/forms";
 
 interface CoursesSearchProps {
   query: string;
@@ -8,7 +8,7 @@ interface CoursesSearchProps {
 export const CoursesSearch = (props: CoursesSearchProps) => {
   return (
     <div className="flex items-center w-full h-fit ">
-      <TextInput
+      <TextField
         placeholder="Cari Kursus"
         value={props.query}
         onChange={(e) => props.setQuery(e.target.value)}

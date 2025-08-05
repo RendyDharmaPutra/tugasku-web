@@ -1,16 +1,16 @@
 import { Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
-import { TextInput } from "./text-input";
+import { TextField } from "./text-field";
 
-interface PasswordInputProps
-  extends Omit<React.ComponentProps<typeof TextInput>, "type" | "leading"> {}
+interface PasswordFieldProps
+  extends Omit<React.ComponentProps<typeof TextField>, "type"> {}
 
-export const PasswordInput = ({ ...props }: PasswordInputProps) => {
+export const PasswordField = ({ ...props }: PasswordFieldProps) => {
   const [show, setShow] = useState(false);
 
   return (
     <div className="relative">
-      <TextInput {...props} type={show ? "text" : "password"} />
+      <TextField {...props} type={show ? "text" : "password"} />
       <button
         type="button"
         onClick={() => setShow((prev) => !prev)}

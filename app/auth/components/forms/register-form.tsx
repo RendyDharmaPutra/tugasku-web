@@ -1,4 +1,4 @@
-import { PasswordInput, TextInput } from "~/components/forms";
+import { PasswordField, TextField } from "~/components/forms";
 import { useFieldErrors } from "~/hooks";
 import { RegisterFieldErrors } from "~/auth/schemas";
 import { AuthForm } from "./auth-form";
@@ -9,7 +9,7 @@ export const RegisterForm = () => {
 
   return (
     <AuthForm label="Daftar">
-      <TextInput
+      <TextField
         label="Alamat Email"
         id="email"
         name="email"
@@ -17,14 +17,14 @@ export const RegisterForm = () => {
         placeholder="example@mail.com"
         message={email}
       />
-      <PasswordInput
+      <PasswordField
         label="Password"
         id="password"
         name="password"
         placeholder="Masukkan password"
         message={password}
       />
-      <PasswordInput
+      <PasswordField
         label="Konfirmasi Password"
         id="confirmPassword"
         name="confirmPassword"

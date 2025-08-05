@@ -1,4 +1,4 @@
-import { TextInput } from "~/components/forms";
+import { TextField } from "~/components/forms";
 import { useFieldErrors } from "~/hooks";
 import { AuthForm } from "./auth-form";
 import { ForgotPasswordFieldErrors } from "~/auth/schemas";
@@ -8,7 +8,7 @@ export const ForgotPasswordForm = () => {
 
   return (
     <AuthForm label="Kirim">
-      <TextInput
+      <TextField
         label="Alamat Email"
         id="email"
         name="email"
