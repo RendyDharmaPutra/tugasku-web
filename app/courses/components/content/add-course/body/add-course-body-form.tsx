@@ -1,8 +1,12 @@
 import { Form, useNavigate } from "@remix-run/react";
 import { Calendar } from "lucide-react";
 import { SubmitBtn } from "~/components/forms";
-import { SelectField, TextField, TimePicker } from "~/components/forms/fields";
-import { TextAreaField } from "~/components/forms/fields/tex-area-field";
+import {
+  SelectField,
+  TextAreaField,
+  TextField,
+  TimePicker,
+} from "~/components/forms/fields";
 import { SecondaryBtn } from "~/components/ui";
 import { AddCourseFieldErrors } from "~/courses/schemas";
 import { useFieldErrors } from "~/hooks";
