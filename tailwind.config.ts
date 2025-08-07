@@ -64,6 +64,10 @@ export default {
           DEFAULT: "#C0C0C0",
           dark: "#777777",
         },
+        success: {
+          DEFAULT: "#27AE60",
+          dark: "#2ECC71",
+        },
         danger: {
           DEFAULT: "#D72638",
           dark: "#FF3B30",
