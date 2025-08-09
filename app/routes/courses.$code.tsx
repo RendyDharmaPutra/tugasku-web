@@ -1,5 +1,6 @@
 import { json, LoaderFunctionArgs } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
+import { DataErrorBoundary } from "~/components/boundary";
 import {
   DetailCourseBody,
   DetailCourseHeader,
@@ -32,7 +33,12 @@ export default function CourseDetailPage() {
           <DetailCourseBody {...courseData.data} />
         </>
       ) : (
-        <h1>Hello</h1>
+        <section className="flex justify-center items-center w-full h-full">
+          <DataErrorBoundary
+            title="Gagal mendapatkan data kursus"
+            description={courseData.message}
+          />
+        </section>
       )}
     </main>
   );

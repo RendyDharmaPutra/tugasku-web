@@ -24,7 +24,9 @@ export const MaterialsSection = ({
       </BodySectionHeader>
       <div className="w-full h-fit">
         <p className="font-normal text-base text-secondary-text dark:text-secondary-text-dark animate">
-          {materialsCount} materi yang tersedia pada kursus ini
+          {materialsCount >= 1
+            ? `${materialsCount} materi yang tersedia pada kursus ini`
+            : "Belum ada materi yang tersedia"}
         </p>
       </div>
     </BodySectionContainer>
