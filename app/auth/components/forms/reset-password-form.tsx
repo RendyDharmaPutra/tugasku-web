@@ -1,4 +1,4 @@
-import { PasswordInput } from "~/components/forms";
+import { PasswordInput } from "~/components/forms/fields";
 import { useFieldErrors } from "~/hooks";
 import { ResetPasswordFieldErrors } from "~/auth/schemas";
 import { AuthForm } from "./auth-form";
