@@ -2,7 +2,7 @@ import * as Sentry from "@sentry/remix";
 import { SupabaseClient, User } from "@supabase/supabase-js";
 import { ActionResult } from "~/types/action-result";
 import { FailureResult, SuccessResult } from "~/utils/action-result";
-import { CourseType } from "../types/course-type";
+import { CourseType } from "../../types/models";
 
 export type ReadCoursesListResponse = ActionResult<
   { courses: CourseType[]; total: number },

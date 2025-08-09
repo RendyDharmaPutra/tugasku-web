@@ -1,7 +1,7 @@
 import { Link } from "@remix-run/react";
 import { BookMarked, ChevronRight } from "lucide-react";
 import { CardLeading, CardContent, CardTrailing } from "~/components/cards";
-import { CourseType } from "~/courses/types";
+import { CourseType } from "~/types/models";
 import { formatCourseSchedule } from "~/utils/formatter";
 
 interface CourseCardProps {

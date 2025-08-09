@@ -1,14 +1,9 @@
 import { FileText } from "lucide-react";
 import { LeadingIcon } from "~/components/ui";
+import { TaskType } from "~/types/models";
+import { formatDetaofTime } from "~/utils/formatter";
 
-type Task = {
-  title: string;
-  description: string;
-  deadline: string;
-  status: "Selesai" | "Belum Selesai";
-};
-
-interface TaskCardProps extends Task {}
+interface TaskCardProps extends TaskType {}
 
 /**
  * ! TODO: Merubah icon pada LeadingIcon menjadi dinamis.
@@ -38,7 +33,7 @@ export const TaskCard = ({
           {description}
         </p>
         <p className="font-normal text-sm text-secondary-text dark:text-secondary-text-dark animate">
-          Deadline: {deadline}
+          Deadline: {formatDetaofTime(deadline)}
         </p>
       </div>
     </div>

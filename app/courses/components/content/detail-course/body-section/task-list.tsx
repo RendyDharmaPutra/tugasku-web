@@ -2,9 +2,10 @@ import { FileText } from "lucide-react";
 import { BodySectionContainer } from "./body-section-container";
 import { BodySectionHeader } from "./body-section-header";
 import { TaskCard } from "~/courses/components/cards";
+import { TaskType } from "~/types/models";
 
 interface TaskListSectionProps {
-  tasks: any[];
+  tasks: TaskType[];
 }
 
 export const TaskListSection = ({ tasks }: TaskListSectionProps) => {
