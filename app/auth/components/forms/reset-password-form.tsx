@@ -1,4 +1,4 @@
-import { PasswordInput } from "~/components/forms/fields";
+import { PasswordField } from "~/components/forms";
 import { useFieldErrors } from "~/hooks";
 import { ResetPasswordFieldErrors } from "~/auth/schemas";
 import { AuthForm } from "./auth-form";
@@ -9,14 +9,14 @@ export const ResetPasswordForm = () => {
 
   return (
     <AuthForm label="Reset Password">
-      <PasswordInput
+      <PasswordField
         label="Password Baru"
         id="password"
         name="password"
         placeholder="Masukkan password baru"
         message={password}
       />
-      <PasswordInput
+      <PasswordField
         label="Konfirmasi Password Baru"
         id="confirmPassword"
         name="confirmPassword"
