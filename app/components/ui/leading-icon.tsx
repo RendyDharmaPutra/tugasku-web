@@ -1,19 +1,22 @@
 import { LucideIcon } from "lucide-react";
+import { AccentColor, getAccentColorClasses } from "~/utils/accent-color-map";
 
 interface LeadingIconProps {
   icon: LucideIcon;
-  color?: "primary-accent" | "danger" | "success";
+  color?: AccentColor;
   className: string;
 }
 
 export const LeadingIcon = ({
   className,
-  color = "primary-accent",
+  color = "primary",
   ...props
 }: LeadingIconProps) => {
+  const { bg } = getAccentColorClasses(color, false);
+
   return (
     <div
-      className={`${className} text-primary-background rounded-full bg-${color} dark:bg-${color}-dark animate`}
+      className={`${className} text-primary-background rounded-full ${bg} animate`}
     >
       <props.icon className="w-full h-full" />
     </div>

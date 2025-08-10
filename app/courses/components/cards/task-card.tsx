@@ -1,38 +1,46 @@
 import { FileText } from "lucide-react";
+import { useMemo } from "react";
 import { LeadingIcon } from "~/components/ui";
 import { TaskType } from "~/types/models";
 import { formatDetaofTime } from "~/utils/formatter";
+import { getCountdownDay } from "~/utils/get-countdown-day";
 
 interface TaskCardProps extends TaskType {}
 
-/**
- * ! TODO: Merubah icon pada LeadingIcon menjadi dinamis.
- * jika selesai maka menjadi icon checklist dengan background success,
- * jika belum selesai maka tetap background primary,
- * jika belum selesai & deadline mepet maka menjadi icon alert dengan background danger
- *
- *  */
 export const TaskCard = ({
   title,
   description,
   deadline,
   status,
 }: TaskCardProps) => {
+  const { days, hours } = getCountdownDay(deadline);
+
+  const isUrgent = useMemo(() => {
+    return days <= 1 && hours <= 12;
+  }, [days, hours]);
+
   return (
-    <div className="p-4 flex flex-row gap-3 rounded-xl border border-border dark:border-border-dark animate">
+    <div className="p-4 flex flex-row gap-3 rounded-xl border border-border dark:border-border-dark hover:bg-primary-accent/10 dark:hover:bg-primary-accent-dark/10 animate">
       <LeadingIcon
         icon={FileText}
         className="p-2 w-8 h-8"
-        color={status === "Selesai" ? "success" : "primary-accent"}
+        color={
+          status === "Selesai" ? "success" : !isUrgent ? "primary" : "danger"
+        }
       />
-      <div className="flex flex-col gap-2 w-full h-fit">
+
+      <div className="flex flex-col gap-1 w-full h-fit">
         <h6 className="w-full font-medium text-base text-primary-text dark:text-primary-text-dark animate">
           {title}
         </h6>
         <p className="w-full font-normal text-sm text-tertiary-text dark:text-tertiary-text-dark animate line-clamp-2">
-          {description}
+          {description ? (
+            description
+          ) : (
+            <span className="italic">Deskripsi tidak tersedia</span>
+          )}
         </p>
-        <p className="font-normal text-sm text-secondary-text dark:text-secondary-text-dark animate">
+        <p className="mb-1 font-normal text-sm text-secondary-text dark:text-secondary-text-dark animate">
           Deadline: {formatDetaofTime(deadline)}
         </p>
       </div>
