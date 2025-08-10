@@ -3,7 +3,7 @@ import { useMemo } from "react";
 import { LeadingIcon } from "~/components/ui";
 import { TaskType } from "~/types/models";
 import { formatDetaofTime } from "~/utils/formatter";
-import { getCountdownDay } from "~/utils/get-countdown-day";
+import { getCountdown } from "~/utils/get-countdown";
 
 interface TaskCardProps extends TaskType {}
 
@@ -13,11 +13,11 @@ export const TaskCard = ({
   deadline,
   status,
 }: TaskCardProps) => {
-  const { days, hours } = getCountdownDay(deadline);
-
   const isUrgent = useMemo(() => {
+    const { days, hours } = getCountdown(deadline);
+
     return days <= 1 && hours <= 12;
-  }, [days, hours]);
+  }, [deadline]);
 
   return (
     <div className="p-4 flex flex-row gap-3 rounded-xl border border-border dark:border-border-dark hover:bg-primary-accent/10 dark:hover:bg-primary-accent-dark/10 animate">

@@ -1,4 +1,4 @@
-export function getCountdownDay(targetISO: string) {
+export function getCountdown(targetISO: string) {
   const targetDate = new Date(targetISO).getTime();
   const now = Date.now();
 
