@@ -15,10 +15,7 @@ export const MaterialsSection = ({
   return (
     <BodySectionContainer>
       <BodySectionHeader icon={Link2} title="Materi Kursus">
-        <Link
-          to={`/courses/${code}/materials`}
-          className="px-3 py-2 flex flex-row items-center gap-2 font-normal text-base text-primary-accent dark:text-primary-accent-dark rounded-xl border border-primary-accent dark:border-primary-accent-dark hover:bg-primary-accent/10 dark:hover:bg-primary-accent-dark/10 animate"
-        >
+        <Link to={`/courses/${code}/materials`} className="inline-btn gap-2">
           Lihat Semua <SquareArrowOutUpRight className="w-4 h-4" />
         </Link>
       </BodySectionHeader>

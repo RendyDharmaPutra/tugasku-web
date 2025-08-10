@@ -18,10 +18,7 @@ export const CoursesSidebarHeader = (props: CoursesSidebarHeaderProps) => {
 
   return (
     <section className="p-4 flex flex-col gap-5 w-full h-fit border-b-[0.25px] border-border dark:border-border-dark animate">
-      <Link
-        to={"/"}
-        className="flex flex-row items-center w-full font-medium text-sm text-primary-accent dark:text-primary-accent-dark hover:text-secondary-accent dark:hover:text-secondary-accent-dark animate"
-      >
+      <Link to={"/"} className="inline-btn">
         <ChevronLeft />
         Kembali ke Dashboard
       </Link>

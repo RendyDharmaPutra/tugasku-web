@@ -1,5 +1,5 @@
 import { BookMarked, Clock } from "lucide-react";
-import { LeadingIcon } from "~/components/ui";
+import { Badge, LeadingIcon } from "~/components/ui";
 import { ReadCourseDetailResponseData } from "~/courses/services";
 import { formatCourseSchedule } from "~/utils/formatter";
 
@@ -7,6 +7,7 @@ interface DetailCourseHeaderProps extends ReadCourseDetailResponseData {}
 
 export const DetailCourseHeader = ({
   name,
+  semester,
   day,
   start_time,
   end_time,
@@ -21,9 +22,13 @@ export const DetailCourseHeader = ({
         <h4 className="font-medium text-2xl text-primary-text dark:text-primary-text-dark animate">
           {name}
         </h4>
-        <div className="flex flex-row items-center gap-2 w-full font-normal text-sm text-secondary-text dark:text-secondary-text-dark animate">
-          <Clock className="w-4 h-4" />{" "}
-          {formatCourseSchedule(day, start_time, end_time)}
+        <div className="flex flex-row gap-4 w-full">
+          <Badge title={`Semester ${semester}`} color="primary" />
+
+          <div className="flex flex-row items-center gap-2 font-normal text-sm text-secondary-text dark:text-secondary-text-dark animate">
+            <Clock className="w-4 h-4" />{" "}
+            {formatCourseSchedule(day, start_time, end_time)}
+          </div>
         </div>
       </div>
     </section>

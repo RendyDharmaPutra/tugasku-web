@@ -22,3 +22,7 @@
 .primary-btn-color {
   @apply border border-secondary-accent dark:border-secondary-accent-dark bg-primary-accent dark:bg-primary-accent-dark hover:bg-secondary-accent dark:hover:bg-secondary-accent-dark active:bg-primary-accent dark:active:bg-primary-accent-dark;
 }
+
+.inline-btn {
+  @apply flex flex-row items-center font-medium text-sm text-primary-accent dark:text-primary-accent-dark hover:text-secondary-accent dark:hover:text-secondary-accent-dark animate;
+}
