@@ -15,7 +15,7 @@ export const SubmitBtn = ({ label, ...props }: SubmitBtnProps) => {
       type="submit"
       aria-disabled={isSubmitting}
       disabled={isSubmitting}
-      className={`px-4 py-2 flex justify-center items-center gap-2 w-full h-fit rounded-xl ${
+      className={`btn w-full h-fit ${
         isSubmitting && "bg-secondary-accent dark:bg-secondary-accent-dark"
       }  primary-btn-color text-primary-background animate`}
       {...props}

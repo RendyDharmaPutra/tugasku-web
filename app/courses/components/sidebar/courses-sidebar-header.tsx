@@ -1,6 +1,5 @@
-import { Link, useLoaderData, useNavigate } from "@remix-run/react";
+import { Link, useLoaderData } from "@remix-run/react";
 import { ChevronLeft, Plus } from "lucide-react";
-import { ActionBtn } from "~/components/ui";
 import { ReadCoursesListResponse } from "~/courses/services";
 import { isActionSuccess } from "~/utils/action-result";
 import { CoursesSearch } from "./content/courses-search";
@@ -14,7 +13,6 @@ export const CoursesSidebarHeader = (props: CoursesSidebarHeaderProps) => {
   const { courses } = useLoaderData<{
     courses: ReadCoursesListResponse;
   }>();
-  const navigate = useNavigate();
 
   return (
     <section className="p-4 flex flex-col gap-5 w-full h-fit border-b-[0.25px] border-border dark:border-border-dark animate">
@@ -34,13 +32,14 @@ export const CoursesSidebarHeader = (props: CoursesSidebarHeaderProps) => {
         )}
       </div>
 
-      <ActionBtn
-        onClick={() => navigate("/courses/add")}
-        className="py-2.5 flex flex-row justify-center items-center gap-2.5 w-full text-primary-background"
+      <Link
+        to={"/courses/add"}
+        prefetch="intent"
+        className="btn w-full h-fit font-medium text-primary-background primary-btn-color animate"
       >
         <Plus className="w-5 h-5 " />
         Tambah Kursus Baru
-      </ActionBtn>
+      </Link>
 
       <CoursesSearch query={props.query} setQuery={props.setQuery} />
     </section>

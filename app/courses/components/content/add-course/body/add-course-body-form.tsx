@@ -1,4 +1,4 @@
-import { Form, useNavigate } from "@remix-run/react";
+import { Form, Link, useNavigate } from "@remix-run/react";
 import { Calendar } from "lucide-react";
 import { SubmitBtn } from "~/components/forms";
 import {
@@ -7,7 +7,6 @@ import {
   TextField,
   TimePicker,
 } from "~/components/forms/fields";
-import { SecondaryBtn } from "~/components/ui";
 import { AddCourseFieldErrors } from "~/courses/schemas";
 import { useFieldErrors } from "~/hooks";
 
@@ -86,7 +85,13 @@ export const AddCourseBodyForm = () => {
       {/* Form Button */}
       <div className="pt-6 flex flex-row items-center gap-3 border-t border-border dark:border-border-dark animate">
         <SubmitBtn label="Simpan" />
-        <SecondaryBtn label="Batal" onClick={() => navigate(-1)} />
+        {/* <SecondaryBtn label="Batal" onClick={() => navigate(-1)} /> */}
+        <Link
+          to={"/courses"}
+          className={`btn w-full h-fit border border-tertiary-background dark:border-tertiary-background-dark hover:bg-tertiary-background dark:hover:bg-tertiary-background-dark active:bg-primary-background dark:active:bg-primary-background-dark primary-txt-color animate`}
+        >
+          Batal
+        </Link>
       </div>
     </Form>
   );

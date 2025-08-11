@@ -2,10 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Base Animation Style */
 .animate {
   @apply transition-all duration-300;
 }
 
+/* Field Style */
 .field-default {
   @apply p-3 w-full font-normal text-sm md:text-base
     text-primary-text dark:text-primary-text-dark
@@ -19,10 +21,36 @@
   @apply bg-secondary-background dark:bg-secondary-background-dark;
 }
 
+/* Button Style */
+.btn {
+  @apply px-4 py-2 flex justify-center items-center gap-2 rounded-xl;
+}
+
 .primary-btn-color {
   @apply border border-secondary-accent dark:border-secondary-accent-dark bg-primary-accent dark:bg-primary-accent-dark hover:bg-secondary-accent dark:hover:bg-secondary-accent-dark active:bg-primary-accent dark:active:bg-primary-accent-dark;
 }
 
 .inline-btn {
   @apply flex flex-row items-center font-medium text-sm text-primary-accent dark:text-primary-accent-dark hover:text-secondary-accent dark:hover:text-secondary-accent-dark animate;
+}
+
+/* Text Color Style */
+.primary-txt-color {
+  @apply text-primary-text dark:text-primary-text-dark;
+}
+
+.primary-txt-hover-color {
+  @apply hover:text-secondary-text dark:hover:text-secondary-text-dark;
+}
+
+.secondary-txt-color {
+  @apply text-secondary-text dark:text-secondary-text-dark;
+}
+
+.secondary-txt-hover-color {
+  @apply hover:text-tertiary-text dark:hover:text-tertiary-text-dark;
+}
+
+.tertiary-txt-hover-color {
+  @apply text-tertiary-text dark:text-tertiary-text-dark;
 }
