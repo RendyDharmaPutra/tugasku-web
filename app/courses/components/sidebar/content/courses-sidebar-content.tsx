@@ -23,7 +23,7 @@ export const CoursesSidebardContent = (props: CoursesSidebarContentProps) => {
 
   return (
     <section className="flex flex-col items-center w-full h-full ">
-      <CoursesList courses={[]} query={props.query} />
+      <CoursesList courses={courses.data.courses} query={props.query} />
     </section>
   );
 };
