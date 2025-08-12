@@ -13,16 +13,17 @@ export const CoursesSidebardContent = (props: CoursesSidebarContentProps) => {
     courses: ReadCoursesListResponse;
   }>();
 
+  if (isActionFailure(courses))
+    return (
+      <DataErrorBoundary
+        title="Gagal mendapatkan data kursus"
+        description={courses.message}
+      />
+    );
+
   return (
     <section className="flex flex-col items-center w-full h-full ">
-      {isActionFailure(courses) ? (
-        <DataErrorBoundary
-          title="Gagal mendapatkan data kursus"
-          description={courses.message}
-        />
-      ) : (
-        <CoursesList courses={courses.data.courses} query={props.query} />
-      )}
+      <CoursesList courses={[]} query={props.query} />
     </section>
   );
 };
