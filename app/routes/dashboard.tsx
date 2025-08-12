@@ -1,13 +1,16 @@
 import { json, LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { createSupabaseServerClient } from "~/libs/supabase";
-import { requireUserSession } from "~/utils/auth-session.server";
+import { getAuthUser } from "~/services/auth";
+import { requireUserSession } from "~/services/auth/require-user-session.server";
 
 export async function loader({ request }: LoaderFunctionArgs) {
   const response = new Response();
   const supabase = createSupabaseServerClient({ request, response });
 
-  const user = await requireUserSession(supabase);
+  await requireUserSession(supabase);
+
+  const user = await getAuthUser(supabase);
 
   return json(
     {

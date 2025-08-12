@@ -1,9 +1,9 @@
 import * as Sentry from "@sentry/remix";
 import { FailureResult, SuccessResult } from "~/utils/action-result";
-import { requireUserSession } from "~/utils/auth-session.server";
 import { AddCourseSchemaType } from "../schemas";
 import { createSupabaseServerClient } from "~/libs/supabase";
 import { generateCourseCode } from "~/utils/generate-course-code";
+import { getAuthUser } from "~/services/auth";
 
 export async function addCourse(
   request: Request,
@@ -13,7 +13,7 @@ export async function addCourse(
   try {
     const supabase = createSupabaseServerClient({ request, response });
 
-    const user = await requireUserSession(supabase);
+    const user = await getAuthUser(supabase);
 
     const code = generateCourseCode(courseData.name);
     const course = { ...courseData, code, user_id: user.id };

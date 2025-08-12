@@ -1,8 +1,9 @@
-import { Link, useLoaderData } from "@remix-run/react";
+import { Await, Link, useLoaderData } from "@remix-run/react";
 import { ChevronLeft, Plus } from "lucide-react";
 import { ReadCoursesListResponse } from "~/courses/services";
 import { isActionSuccess } from "~/utils/action-result";
 import { CoursesSearch } from "./content/courses-search";
+import { Suspense } from "react";
 
 interface CoursesSidebarHeaderProps {
   query: string;
@@ -11,7 +12,7 @@ interface CoursesSidebarHeaderProps {
 
 export const CoursesSidebarHeader = (props: CoursesSidebarHeaderProps) => {
   const { courses } = useLoaderData<{
-    courses: ReadCoursesListResponse;
+    courses: Promise<ReadCoursesListResponse>;
   }>();
 
   return (
@@ -25,11 +26,17 @@ export const CoursesSidebarHeader = (props: CoursesSidebarHeaderProps) => {
         <h4 className="font-semibold text-xl text-primary-text dark:text-primary-text-dark animate">
           Daftar Kursus
         </h4>
-        {isActionSuccess(courses) && (
-          <p className="text-sm text-secondary-text dark:text-secondary-text-dark animate">
-            {courses.data.total} kursus tersedia
-          </p>
-        )}
+        <Suspense fallback={<p className="text-sm text-white">Loading</p>}>
+          <Await resolve={courses}>
+            {(coursesData) =>
+              isActionSuccess(coursesData) && (
+                <p className="text-sm text-secondary-text dark:text-secondary-text-dark animate">
+                  {coursesData.data.total} kursus tersedia
+                </p>
+              )
+            }
+          </Await>
+        </Suspense>
       </div>
 
       <Link

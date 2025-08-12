@@ -3,7 +3,7 @@ import { ActionResult } from "~/types/action-result";
 import { FailureResult, SuccessResult } from "~/utils/action-result";
 import { CourseType, TaskType } from "../../types/models";
 import { createSupabaseServerClient } from "~/libs/supabase";
-import { requireUserSession } from "~/utils/auth-session.server";
+import { getAuthUser } from "~/services/auth";
 
 export type ReadCourseDetailResponse = ActionResult<
   ReadCourseDetailResponseData,
@@ -22,7 +22,7 @@ export async function readCourseDetail(
 ): Promise<ReadCourseDetailResponse> {
   const supabase = createSupabaseServerClient({ request, response });
 
-  const user = await requireUserSession(supabase);
+  const user = await getAuthUser(supabase);
 
   try {
     // Ambil data kursus

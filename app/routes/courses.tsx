@@ -1,11 +1,11 @@
 import { LoaderFunctionArgs, type MetaFunction } from "@remix-run/node";
-import { json, Outlet, useLocation } from "@remix-run/react";
+import { defer, json, Outlet, useLocation } from "@remix-run/react";
 import { useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import { CoursesSidebar } from "~/courses/components/sidebar";
 import { readCoursesList } from "~/courses/services";
 import { createSupabaseServerClient } from "~/libs/supabase";
-import { requireUserSession } from "~/utils/auth-session.server";
+import { getAuthUser, requireUserSession } from "~/services/auth";
 
 export const meta: MetaFunction = () => {
   return [{ title: "TugasKu - Daftar Kursus" }];
@@ -15,10 +15,12 @@ export async function loader({ request }: LoaderFunctionArgs) {
   const response = new Response();
   const supabase = createSupabaseServerClient({ request, response });
 
-  const user = await requireUserSession(supabase);
-  const courses = await readCoursesList(supabase, user);
+  await requireUserSession(supabase);
 
-  return json(
+  const user = getAuthUser(supabase);
+  const courses = readCoursesList(supabase);
+
+  return defer(
     {
       user,
       courses,
