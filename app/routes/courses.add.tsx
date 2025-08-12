@@ -36,9 +36,5 @@ export async function action({ request }: ActionFunctionArgs) {
   const result = await addCourse(request, response, validationResult.data);
   console.log(result);
 
-  if (!result.success) return result;
-
-  return redirect("/courses", {
-    headers: response.headers,
-  });
+  return result;
 }
