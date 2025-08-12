@@ -14,8 +14,6 @@ export const AddCourseBodyForm = () => {
   const { name, semester, description, day, start_time, end_time } =
     useFieldErrors<AddCourseFieldErrors>();
 
-  const navigate = useNavigate();
-
   return (
     <Form className="flex flex-col gap-6 w-full h-fit" method="POST">
       {/* Course Information */}
