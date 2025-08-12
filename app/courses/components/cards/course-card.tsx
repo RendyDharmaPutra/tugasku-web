@@ -12,6 +12,7 @@ export const CourseCard = ({ course }: CourseCardProps) => {
   return (
     <Link
       to={`/courses/${course.code}`}
+      prefetch="intent"
       className="px-6 py-4 flex flex-row items-center gap-4 w-full h-fit border-b border-b-border dark:border-border-dark hover:bg-primary-accent/10 dark:hover:bg-primary-accent-dark/10 animate"
     >
       <CardLeading icon={BookMarked} />

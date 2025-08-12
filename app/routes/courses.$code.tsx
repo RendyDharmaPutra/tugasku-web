@@ -1,5 +1,6 @@
 import { json, LoaderFunctionArgs } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
+import { Await, defer, useLoaderData } from "@remix-run/react";
+import { Suspense } from "react";
 import { DataErrorBoundary } from "~/components/boundary";
 import {
   DetailCourseBody,
@@ -12,9 +13,9 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
   const response = new Response();
   const courseCode = (params as { code: string }).code;
 
-  const courseData = await readCourseDetail(request, response, courseCode);
+  const courseData = readCourseDetail(request, response, courseCode);
 
-  return json(
+  return defer(
     {
       courseData,
     },
@@ -27,19 +28,25 @@ export default function CourseDetailPage() {
 
   return (
     <main className="p-6 flex flex-col items-center gap-6 w-full h-screen bg-primary-background dark:bg-primary-background-dark animate overflow-y-auto">
-      {isActionSuccess(courseData) ? (
-        <>
-          <DetailCourseHeader {...courseData.data} />
-          <DetailCourseBody {...courseData.data} />
-        </>
-      ) : (
-        <section className="flex justify-center items-center w-full h-full">
-          <DataErrorBoundary
-            title="Gagal mendapatkan data kursus"
-            description={courseData.message}
-          />
-        </section>
-      )}
+      <Suspense fallback={<p className="text-2xl text-white">Loading</p>}>
+        <Await resolve={courseData}>
+          {(courseData) =>
+            isActionSuccess(courseData) ? (
+              <>
+                <DetailCourseHeader {...courseData.data} />
+                <DetailCourseBody {...courseData.data} />
+              </>
+            ) : (
+              <section className="flex justify-center items-center w-full h-full">
+                <DataErrorBoundary
+                  title="Gagal mendapatkan data kursus"
+                  description={courseData.message}
+                />
+              </section>
+            )
+          }
+        </Await>
+      </Suspense>
     </main>
   );
 }
