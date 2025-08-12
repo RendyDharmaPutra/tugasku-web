@@ -28,7 +28,7 @@ export const CoursesList = ({ courses, query }: CoursesListProps) => {
   }, [courses, query]);
 
   return (
-    <div className="flex flex-col items-center w-full h-full overflow-y-auto ">
+    <div className="flex flex-col items-center w-full h-full overflow-y-auto">
       {showCourses.length < 1 ? (
         <FeedbackState
           title="Kursus tidak ditemukan"

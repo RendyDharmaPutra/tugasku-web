@@ -15,7 +15,7 @@ export const CoursesSidebardContent = (props: CoursesSidebarContentProps) => {
   }>();
 
   return (
-    <section className="flex flex-col items-center w-full h-full ">
+    <section className="flex flex-col items-center w-full h-full overflow-hidden">
       <Suspense fallback={<p className="text-2xl text-white">Loading</p>}>
         <Await resolve={courses}>
           {(coursesData) =>
