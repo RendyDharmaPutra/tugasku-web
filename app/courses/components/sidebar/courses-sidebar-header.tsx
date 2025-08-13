@@ -27,8 +27,7 @@ export const CoursesSidebarHeader = (props: CoursesSidebarHeaderProps) => {
         <h4 className="font-semibold text-xl text-primary-text dark:text-primary-text-dark animate">
           Daftar Kursus
         </h4>
-        <TextSkeleton className="w-36" />
-        {/* <Suspense fallback={<p className="text-sm text-white">Loading</p>}>
+        <Suspense fallback={<TextSkeleton className="w-36" />}>
           <Await resolve={courses}>
             {(coursesData) =>
               isActionSuccess(coursesData) && (
@@ -38,7 +37,7 @@ export const CoursesSidebarHeader = (props: CoursesSidebarHeaderProps) => {
               )
             }
           </Await>
-        </Suspense> */}
+        </Suspense>
       </div>
 
       <Link
