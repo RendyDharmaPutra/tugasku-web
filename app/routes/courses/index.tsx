@@ -6,6 +6,7 @@ import { Sidebar } from "./components";
 import { readCoursesList } from "~/courses/services";
 import { createSupabaseServerClient } from "~/libs/supabase";
 import { getAuthUser, requireUserSession } from "~/services/auth";
+import { ThemeToggle } from "~/components/ui";
 
 export const meta: MetaFunction = () => {
   return [{ title: "TugasKu - Daftar Kursus" }];
@@ -46,7 +47,8 @@ export default function CoursesPage() {
   }
 
   return (
-    <main className="flex flex-row w-full h-screen ">
+    <main className="relative flex flex-row w-full h-screen ">
+      <ThemeToggle className="absolute top-3 right-3" />
       {isDesktop ? (
         <>
           <Sidebar />
