@@ -4,6 +4,7 @@ import { ReadCoursesListResponse } from "~/courses/services";
 import { isActionSuccess } from "~/utils/action-result";
 import { CoursesSearch } from "./content/courses-search";
 import { Suspense } from "react";
+import { TextSkeleton } from "~/components/loading/skeleton";
 
 interface CoursesSidebarHeaderProps {
   query: string;
@@ -26,7 +27,8 @@ export const CoursesSidebarHeader = (props: CoursesSidebarHeaderProps) => {
         <h4 className="font-semibold text-xl text-primary-text dark:text-primary-text-dark animate">
           Daftar Kursus
         </h4>
-        <Suspense fallback={<p className="text-sm text-white">Loading</p>}>
+        <TextSkeleton className="w-36" />
+        {/* <Suspense fallback={<p className="text-sm text-white">Loading</p>}>
           <Await resolve={courses}>
             {(coursesData) =>
               isActionSuccess(coursesData) && (
@@ -36,7 +38,7 @@ export const CoursesSidebarHeader = (props: CoursesSidebarHeaderProps) => {
               )
             }
           </Await>
-        </Suspense>
+        </Suspense> */}
       </div>
 
       <Link

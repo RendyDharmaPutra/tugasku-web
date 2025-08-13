@@ -2,6 +2,7 @@ import { json, LoaderFunctionArgs } from "@remix-run/node";
 import { Await, defer, useLoaderData } from "@remix-run/react";
 import { Suspense } from "react";
 import { DataErrorBoundary } from "~/components/boundary";
+import { LoadingSpinner } from "~/components/loading";
 import {
   DetailCourseBody,
   DetailCourseHeader,
@@ -28,7 +29,7 @@ export default function CourseDetailPage() {
 
   return (
     <main className="p-6 flex flex-col items-center gap-6 w-full h-screen bg-primary-background dark:bg-primary-background-dark animate overflow-y-auto">
-      <Suspense fallback={<p className="text-2xl text-white">Loading</p>}>
+      <Suspense fallback={<LoadingSpinner />}>
         <Await resolve={courseData}>
           {(courseData) =>
             isActionSuccess(courseData) ? (

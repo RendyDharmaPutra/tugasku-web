@@ -4,6 +4,7 @@ import { CoursesList } from "./courses-list";
 import { isActionFailure } from "~/utils/action-result";
 import { DataErrorBoundary } from "~/components/boundary";
 import { Suspense } from "react";
+import { LoadingSpinner } from "~/components/loading";
 
 interface CoursesSidebarContentProps {
   query: string;
@@ -16,7 +17,7 @@ export const CoursesSidebardContent = (props: CoursesSidebarContentProps) => {
 
   return (
     <section className="flex flex-col items-center w-full h-full overflow-hidden">
-      <Suspense fallback={<p className="text-2xl text-white">Loading</p>}>
+      <Suspense fallback={<LoadingSpinner />}>
         <Await resolve={courses}>
           {(coursesData) =>
             isActionFailure(coursesData) ? (
