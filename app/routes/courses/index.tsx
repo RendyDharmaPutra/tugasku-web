@@ -48,7 +48,7 @@ export default function CoursesPage() {
 
   return (
     <main className="relative flex flex-row w-full h-screen ">
-      <ThemeToggle className="absolute top-3 right-3" />
+      <ThemeToggle className="absolute bottom-8 right-8 z-50" />
       {isDesktop ? (
         <>
           <Sidebar />
