@@ -1,11 +1,11 @@
 import { TextField } from "~/components/forms";
 
-interface CoursesSearchProps {
+interface SearchCoursesProps {
   query: string;
   setQuery: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export const CoursesSearch = (props: CoursesSearchProps) => {
+export const SearchCourses = (props: SearchCoursesProps) => {
   return (
     <div className="flex items-center w-full h-fit ">
       <TextField

@@ -1,15 +1,15 @@
-import { CourseCard } from "../../cards";
 import { BookMarked, SearchX } from "lucide-react";
 import { useMemo } from "react";
 import { FeedbackState } from "~/components/boundary";
+import { CourseCard } from "~/courses/components/cards";
 import { CourseType } from "~/types/models";
 
-interface CoursesListProps {
+interface CourseListProps {
   courses: CourseType[];
   query: string;
 }
 
-export const CoursesList = ({ courses, query }: CoursesListProps) => {
+export const CourseList = ({ courses, query }: CourseListProps) => {
   // return Boundary jika data kosong
   if (courses.length < 1)
     return (

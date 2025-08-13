@@ -1,8 +1,5 @@
-import { ActionFunctionArgs, redirect } from "@remix-run/node";
-import {
-  AddCourseBody,
-  AddCourseHeader,
-} from "~/courses/components/content/add-course";
+import { ActionFunctionArgs } from "@remix-run/node";
+import { BodySection, HeaderSection } from "./components";
 import { AddCourseSchema } from "~/courses/schemas";
 import { addCourse } from "~/courses/services";
 import { useActionToast } from "~/hooks";
@@ -14,8 +11,8 @@ export default function AddCoursePage() {
 
   return (
     <main className="p-6 flex flex-col items-center gap-8 w-full h-screen bg-primary-background dark:bg-primary-background-dark animate overflow-y-auto">
-      <AddCourseHeader />
-      <AddCourseBody />
+      <HeaderSection />
+      <BodySection />
     </main>
   );
 }

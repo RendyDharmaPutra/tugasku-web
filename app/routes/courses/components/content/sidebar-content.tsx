@@ -1,16 +1,16 @@
 import { Await, useLoaderData } from "@remix-run/react";
 import { ReadCoursesListResponse } from "~/courses/services/";
-import { CoursesList } from "./courses-list";
+import { CourseList } from "./course-list";
 import { isActionFailure } from "~/utils/action-result";
 import { DataErrorBoundary } from "~/components/boundary";
 import { Suspense } from "react";
 import { LoadingSpinner } from "~/components/loading";
 
-interface CoursesSidebarContentProps {
+interface SidebarContentProps {
   query: string;
 }
 
-export const CoursesSidebardContent = (props: CoursesSidebarContentProps) => {
+export const SidebarContent = (props: SidebarContentProps) => {
   const { courses } = useLoaderData<{
     courses: Promise<ReadCoursesListResponse>;
   }>();
@@ -26,7 +26,7 @@ export const CoursesSidebardContent = (props: CoursesSidebarContentProps) => {
                 description={coursesData.message}
               />
             ) : (
-              <CoursesList
+              <CourseList
                 courses={coursesData.data.courses}
                 query={props.query}
               />

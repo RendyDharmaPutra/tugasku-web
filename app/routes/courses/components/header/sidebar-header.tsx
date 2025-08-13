@@ -2,16 +2,16 @@ import { Await, Link, useLoaderData } from "@remix-run/react";
 import { ChevronLeft, Plus } from "lucide-react";
 import { ReadCoursesListResponse } from "~/courses/services";
 import { isActionSuccess } from "~/utils/action-result";
-import { CoursesSearch } from "./content/courses-search";
+import { SearchCourses } from "./search-courses";
 import { Suspense } from "react";
 import { TextSkeleton } from "~/components/loading/skeleton";
 
-interface CoursesSidebarHeaderProps {
+interface SiderbarHeaderProps {
   query: string;
   setQuery: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export const CoursesSidebarHeader = (props: CoursesSidebarHeaderProps) => {
+export const SidebarHeader = (props: SiderbarHeaderProps) => {
   const { courses } = useLoaderData<{
     courses: Promise<ReadCoursesListResponse>;
   }>();
@@ -49,7 +49,7 @@ export const CoursesSidebarHeader = (props: CoursesSidebarHeaderProps) => {
         Tambah Kursus Baru
       </Link>
 
-      <CoursesSearch query={props.query} setQuery={props.setQuery} />
+      <SearchCourses query={props.query} setQuery={props.setQuery} />
     </section>
   );
 };

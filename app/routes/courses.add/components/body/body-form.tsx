@@ -10,7 +10,7 @@ import {
 import { AddCourseFieldErrors } from "~/courses/schemas";
 import { useFieldErrors } from "~/hooks";
 
-export const AddCourseBodyForm = () => {
+export const BodyForm = () => {
   const { name, semester, description, day, start_time, end_time } =
     useFieldErrors<AddCourseFieldErrors>();
 

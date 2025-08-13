@@ -2,7 +2,7 @@ import { LoaderFunctionArgs, type MetaFunction } from "@remix-run/node";
 import { defer, json, Outlet, useLocation } from "@remix-run/react";
 import { useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
-import { CoursesSidebar } from "~/courses/components/sidebar";
+import { Sidebar } from "./components";
 import { readCoursesList } from "~/courses/services";
 import { createSupabaseServerClient } from "~/libs/supabase";
 import { getAuthUser, requireUserSession } from "~/services/auth";
@@ -49,11 +49,11 @@ export default function CoursesPage() {
     <main className="flex flex-row w-full h-screen ">
       {isDesktop ? (
         <>
-          <CoursesSidebar />
+          <Sidebar />
           <Outlet />
         </>
       ) : pathname === "/courses" ? (
-        <CoursesSidebar />
+        <Sidebar />
       ) : (
         <Outlet />
       )}

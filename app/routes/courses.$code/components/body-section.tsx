@@ -1,18 +1,14 @@
-import {
-  DescriptionSection,
-  MaterialsSection,
-  TaskListSection,
-} from "./body-section";
+import { DescriptionSection, MaterialsSection, TaskListSection } from "./body";
 import { ReadCourseDetailResponseData } from "~/courses/services";
 
-interface DetailCourseBodyProps extends ReadCourseDetailResponseData {}
+interface BodySectionProps extends ReadCourseDetailResponseData {}
 
-export const DetailCourseBody = ({
+export const BodySection = ({
   code,
   description,
   materialCount,
   tasks,
-}: DetailCourseBodyProps) => {
+}: BodySectionProps) => {
   return (
     <section className="flex flex-col gap-8 w-full h-fit">
       <DescriptionSection content={description} />

@@ -1,13 +1,13 @@
-import { AddCourseBodyForm, AddCourseBodyHeader } from "./body";
+import { BodyForm, BodyHeader } from "./body";
 
-export const AddCourseBody = () => {
+export const BodySection = () => {
   return (
     <section className="p-6 flex flex-col gap-8 w-full h-fit rounded-xl border border-border dark:border-border-dark animate">
       {/* Header */}
-      <AddCourseBodyHeader />
+      <BodyHeader />
 
       {/* Form */}
-      <AddCourseBodyForm />
+      <BodyForm />
     </section>
   );
 };

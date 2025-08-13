@@ -1,12 +1,9 @@
-import { json, LoaderFunctionArgs } from "@remix-run/node";
+import { LoaderFunctionArgs } from "@remix-run/node";
 import { Await, defer, useLoaderData } from "@remix-run/react";
 import { Suspense } from "react";
 import { DataErrorBoundary } from "~/components/boundary";
 import { LoadingSpinner } from "~/components/loading";
-import {
-  DetailCourseBody,
-  DetailCourseHeader,
-} from "~/courses/components/content/detail-course";
+import { BodySection, HeaderSection } from "./components";
 import { readCourseDetail } from "~/courses/services";
 import { isActionSuccess } from "~/utils/action-result";
 
@@ -34,8 +31,8 @@ export default function CourseDetailPage() {
           {(courseData) =>
             isActionSuccess(courseData) ? (
               <>
-                <DetailCourseHeader {...courseData.data} />
-                <DetailCourseBody {...courseData.data} />
+                <HeaderSection {...courseData.data} />
+                <BodySection {...courseData.data} />
               </>
             ) : (
               <section className="flex justify-center items-center w-full h-full">

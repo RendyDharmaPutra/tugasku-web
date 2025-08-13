@@ -1,6 +1,6 @@
 import { File } from "lucide-react";
 
-export const AddCourseBodyHeader = () => {
+export const BodyHeader = () => {
   return (
     <section className="flex flex-col gap-2 w-full h-fit">
       <div className="flex flex-row items-center gap-2 w-full h-fit">

@@ -3,15 +3,15 @@ import { Badge, LeadingIcon } from "~/components/ui";
 import { ReadCourseDetailResponseData } from "~/courses/services";
 import { formatCourseSchedule } from "~/utils/formatter";
 
-interface DetailCourseHeaderProps extends ReadCourseDetailResponseData {}
+interface HeaderSectionProps extends ReadCourseDetailResponseData {}
 
-export const DetailCourseHeader = ({
+export const HeaderSection = ({
   name,
   semester,
   day,
   start_time,
   end_time,
-}: DetailCourseHeaderProps) => {
+}: HeaderSectionProps) => {
   return (
     <section className="flex flex-row items-center gap-4 w-full h-fit">
       {/* Leading Icon */}

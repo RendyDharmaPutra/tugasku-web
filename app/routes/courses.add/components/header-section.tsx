@@ -1,6 +1,6 @@
 import { Plus } from "lucide-react";
 
-export const AddCourseHeader = () => {
+export const HeaderSection = () => {
   return (
     <section className="flex flex-row items-center gap-3 w-full h-fit ">
       <div className="flex justify-center items-center w-12 h-12 rounded-full bg-primary-accent dark:bg-primary-accent-dark animate">
