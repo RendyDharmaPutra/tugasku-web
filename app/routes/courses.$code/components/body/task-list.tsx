@@ -1,9 +1,9 @@
 import { FileText } from "lucide-react";
 import { BodySectionContainer } from "./body-section-container";
 import { BodySectionHeader } from "./body-section-header";
-import { TaskCard } from "~/courses/components/cards";
 import { TaskType } from "~/types/models";
 import { FeedbackState } from "~/components/boundary";
+import { TaskCard } from "../cards";
 
 interface TaskListSectionProps {
   tasks: TaskType[];

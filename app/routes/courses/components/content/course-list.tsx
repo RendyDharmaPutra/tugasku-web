@@ -1,8 +1,8 @@
 import { BookMarked, SearchX } from "lucide-react";
 import { useMemo } from "react";
 import { FeedbackState } from "~/components/boundary";
-import { CourseCard } from "~/courses/components/cards";
 import { CourseType } from "~/types/models";
+import { CourseCard } from "../cards";
 
 interface CourseListProps {
   courses: CourseType[];
